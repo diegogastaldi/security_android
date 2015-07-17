@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results package="com.madrabbit.facebooknewsreader">
+<flow component="unknown_component">
+<sink method="&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;"></sink>
+<source method=":-( $i0 := @parameter2: int">
+<in>&lt;com.madrabbit.facebooknewsreader.RSSReader$AdapterClick: void onItemClick(android.widget.AdapterView,android.view.View,int,long)&gt;</in>
+<on-path>[$i0 := @parameter2: int, interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.AdMobActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r6.&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;(&quot;o&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;$&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;mi&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ad&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ap&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;au&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;rd&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ru&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;s&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sin&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;skd&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sku&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;oi&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;si&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;su&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;b&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r2.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r7 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;c&quot;), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$z0 = virtualinvoke $r2.&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;(&quot;p&quot;, 0), interfaceinvoke $r12.&lt;android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putBoolean(java.lang.String,boolean)&gt;(&quot;newuser&quot;, 0)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;"></sink>
+<source method=":-( $i0 := @parameter2: int">
+<in>&lt;com.madrabbit.facebooknewsreader.RSSReader$AdapterClick: void onItemClick(android.widget.AdapterView,android.view.View,int,long)&gt;</in>
+<on-path>[$i0 := @parameter2: int, specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.AdMobActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r6.&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;(&quot;o&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;$&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;mi&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ad&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ap&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;au&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;rd&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ru&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;s&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sin&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;skd&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sku&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;oi&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;si&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;su&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;b&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r2.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r7 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;c&quot;), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$z0 = virtualinvoke $r2.&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;(&quot;p&quot;, 0), specialinvoke $r1.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r2)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;"></sink>
+<source method="&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.AdMobActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r6.&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;(&quot;o&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;$&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;mi&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ad&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ap&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;au&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;rd&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ru&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;s&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sin&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;skd&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sku&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;oi&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;si&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;su&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;b&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r2.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r7 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;c&quot;), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$z0 = virtualinvoke $r2.&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;(&quot;p&quot;, 0), specialinvoke $r8.&lt;java.net.URL: void &lt;init&gt;(java.lang.String)&gt;($r1)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int d(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;java.util.Locale: java.lang.String getCountry()&gt;">
+<in>&lt;com.admob.android.ads.f: java.lang.String h()&gt;</in>
+<on-path>[$r0 = virtualinvoke $r2.&lt;java.util.Locale: java.lang.String getCountry()&gt;(), staticinvoke &lt;android.util.Log: int d(java.lang.String,java.lang.String)&gt;(&quot;AdMobSDK&quot;, $r5)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int d(java.lang.String,java.lang.String)&gt;"></sink>
+<source method=":-( $r1 := @parameter0: android.hardware.SensorEvent">
+<in>&lt;com.millennialmedia.android.AccelerometerManager$1: void onSensorChanged(android.hardware.SensorEvent)&gt;</in>
+<on-path>[$r1 := @parameter0: android.hardware.SensorEvent, staticinvoke &lt;android.util.Log: int d(java.lang.String,java.lang.String)&gt;(&quot;MillennialMediaSDK&quot;, $r2)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;android.content.Intent: android.net.Uri getData()&gt;">
+<in>&lt;com.millennialmedia.android.VideoPlayer: void playVideo()&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.content.Intent: android.net.Uri getData()&gt;(), staticinvoke &lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;(&quot;MillennailMediaSDK&quot;, $r9)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;android.content.Intent: java.lang.String getDataString()&gt;">
+<in>&lt;com.millennialmedia.android.MMAdViewOverlayActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r12 = virtualinvoke $r6.&lt;android.content.Intent: java.lang.String getDataString()&gt;(), staticinvoke &lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;(&quot;MillennialMediaSDK&quot;, $r2)]</on-path>
+</source>
+<source method="&lt;android.content.Intent: boolean getBooleanExtra(java.lang.String,boolean)&gt;">
+<in>&lt;com.millennialmedia.android.MMAdViewOverlayActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$z2 = virtualinvoke $r6.&lt;android.content.Intent: boolean getBooleanExtra(java.lang.String,boolean)&gt;(&quot;canAccelerate&quot;, 0), staticinvoke &lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;(&quot;MillennialMediaSDK&quot;, $r2)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;android.content.Intent: java.lang.String getDataString()&gt;">
+<in>&lt;com.millennialmedia.android.MMAdViewOverlayActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r12 = virtualinvoke $r6.&lt;android.content.Intent: java.lang.String getDataString()&gt;(), staticinvoke &lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;(&quot;MillennialMediaSDK&quot;, $r3)]</on-path>
+</source>
+<source method="&lt;android.content.Intent: android.net.Uri getData()&gt;">
+<in>&lt;com.millennialmedia.android.MMAdViewOverlayActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r7 = virtualinvoke $r6.&lt;android.content.Intent: android.net.Uri getData()&gt;(), staticinvoke &lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;(&quot;MillennialMediaSDK&quot;, $r3)]</on-path>
+</source>
+<source method="&lt;android.content.Intent: boolean getBooleanExtra(java.lang.String,boolean)&gt;">
+<in>&lt;com.millennialmedia.android.MMAdViewOverlayActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$z2 = virtualinvoke $r6.&lt;android.content.Intent: boolean getBooleanExtra(java.lang.String,boolean)&gt;(&quot;canAccelerate&quot;, 0), staticinvoke &lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;(&quot;MillennialMediaSDK&quot;, $r3)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int v(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;android.content.Intent: android.net.Uri getData()&gt;">
+<in>&lt;com.millennialmedia.android.VideoPlayer: void playVideo()&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.content.Intent: android.net.Uri getData()&gt;(), staticinvoke &lt;android.util.Log: int v(java.lang.String,java.lang.String)&gt;(&quot;MillennailMediaSDK&quot;, $r4)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.util.Log: int v(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;android.content.Intent: android.os.Bundle getExtras()&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r4.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;(), staticinvoke &lt;android.util.Log: int v(java.lang.String,java.lang.String)&gt;($r6, $r3)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r6 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;($r6), staticinvoke &lt;android.util.Log: int v(java.lang.String,java.lang.String)&gt;($r6, $r3)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;" is-intent="1" intent-id="newField_25"></sink>
+<source method=":-( $i0 := @parameter2: int">
+<in>&lt;com.madrabbit.facebooknewsreader.RSSReader$AdapterClick: void onItemClick(android.widget.AdapterView,android.view.View,int,long)&gt;</in>
+<on-path>[$i0 := @parameter2: int, virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.AdMobActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r6.&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;(&quot;o&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;$&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;mi&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ad&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ap&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;au&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r2 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;rd&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;ru&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;s&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sin&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;skd&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;sku&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.o: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: android.os.Bundle getBundle(java.lang.String)&gt;(&quot;oi&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;json&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;si&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;su&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;t&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.p: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;b&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r4 = virtualinvoke $r2.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;u&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$r7 = virtualinvoke $r1.&lt;android.os.Bundle: java.util.ArrayList getParcelableArrayList(java.lang.String)&gt;(&quot;c&quot;), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;">
+<in>&lt;com.admob.android.ads.r: boolean a(android.os.Bundle)&gt;</in>
+<on-path>[$z0 = virtualinvoke $r2.&lt;android.os.Bundle: boolean getBoolean(java.lang.String,boolean)&gt;(&quot;p&quot;, 0), virtualinvoke $r4.&lt;com.madrabbit.facebooknewsreader.RSSReader: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.content.Context: void startActivity(android.content.Intent)&gt;" is-intent="1" intent-id="newField_26"></sink>
+<source method="&lt;android.content.Intent: android.os.Bundle getExtras()&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r4.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;(), virtualinvoke $r5.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r4)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r6 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;($r6), virtualinvoke $r5.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r4)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;" is-intent="1" intent-id="newField_13"></sink>
+<source method="&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;">
+<in>&lt;com.madrabbit.facebooknewsreader.ShowDescription: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r6.&lt;android.content.Intent: android.os.Bundle getBundleExtra(java.lang.String)&gt;(&quot;android.intent.extra.INTENT&quot;), virtualinvoke $r5.&lt;com.madrabbit.facebooknewsreader.ShowDescription: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.madrabbit.facebooknewsreader.ShowDescription: java.lang.String ArticleBuilder(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;link&quot;), virtualinvoke $r5.&lt;com.madrabbit.facebooknewsreader.ShowDescription: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.madrabbit.facebooknewsreader.ShowDescription: java.lang.String ArticleBuilder(android.os.Bundle)&gt;</in>
+<on-path>[$r3 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;title&quot;), virtualinvoke $r5.&lt;com.madrabbit.facebooknewsreader.ShowDescription: void startActivity(android.content.Intent)&gt;($r2)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;" is-intent="1" intent-id="newField_2"></sink>
+<source method="&lt;android.content.Intent: android.os.Bundle getExtras()&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r4.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;(), virtualinvoke $r8.&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;($r12)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r6 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;($r6), virtualinvoke $r8.&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;($r12)]</on-path>
+</source>
+</flow>
+<flow component="unknown_component">
+<sink method="&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;" is-intent="1" intent-id="newField_1"></sink>
+<source method="&lt;android.content.Intent: android.os.Bundle getExtras()&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r1 = virtualinvoke $r4.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;(), virtualinvoke $r8.&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;($r5)]</on-path>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;">
+<in>&lt;com.mobclix.android.sdk.MobclixBrowserActivity: void onCreate(android.os.Bundle)&gt;</in>
+<on-path>[$r6 = virtualinvoke $r1.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;($r6), virtualinvoke $r8.&lt;android.app.Activity: void startActivity(android.content.Intent)&gt;($r5)]</on-path>
+</source>
+</flow>
+</results>

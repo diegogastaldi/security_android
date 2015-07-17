@@ -1,0 +1,24 @@
+# Copy this file to flowdroid.sh and modify soot_classpath below.
+# USAGE: In Bash, enter the command "source flowdroid.sh".
+wkspc=~/workspace-flowdroid-3
+soot_classpath=$(echo "$wkspc/soot-infoflow-android/bin
+$wkspc/soot/classes
+$wkspc/jasmin/classes
+$wkspc/jasmin/libs/java_cup.jar
+$wkspc/heros/bin
+$wkspc/heros/guava-14.0.1.jar
+$wkspc/heros/slf4j-api-1.7.5.jar
+$wkspc/heros/slf4j-simple-1.7.5.jar
+$wkspc/soot/libs/polyglot.jar
+$wkspc/soot/libs/AXMLPrinter2.jar
+$wkspc/soot/libs/baksmali-2.0b5.jar
+$wkspc/soot/libs/baksmali-1.3.2.jar
+$wkspc/soot-infoflow-android/lib/polyglot.jar
+$wkspc/soot-infoflow-android/lib/AXMLPrinter2.jar
+$wkspc/soot-infoflow/bin
+$wkspc/soot-infoflow/lib/cos.jar
+$wkspc/soot-infoflow/lib/j2ee.jar
+$wkspc/soot-infoflow/lib/slf4j-api-1.7.5.jar
+$wkspc/soot-infoflow/lib/slf4j-simple-1.7.5.jar
+$wkspc/soot-infoflow-android/lib/axml-1.0.jar" | tr "\n" ":")
+export flowdroid="/usr/lib/jvm/java-7-openjdk-amd64/bin/java -Dfile.encoding=UTF-8 -classpath $soot_classpath soot.jimple.infoflow.android.TestApps.Test"

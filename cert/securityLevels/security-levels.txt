@@ -1,0 +1,15 @@
+# The levels should have a partial order. In addition, it must be transitively closed.
+#                       Private
+#                  /      |      \
+#                 /       |       \
+#     Semi-private1  Semi-private2  Semi-private3
+#                 \       |        / 
+#                  \      |       /
+#                       Public
+Public <= Semi-private1
+Public <= Semi-private2
+Public <= Semi-private3
+Public <= Private
+Semi-private1 <= Private
+Semi-private2 <= Private
+Semi-private3 <= Private 

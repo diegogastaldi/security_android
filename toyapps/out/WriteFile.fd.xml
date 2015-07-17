@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results package="org.cert.WriteFile">
+<flow>
+<sink method="&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="&lt;android.location.Location: double getLongitude()&gt;" component="org.cert.WriteFile.Button1Listener">
+<in>getMyLocation</in>
+</source>
+<source method="&lt;android.location.Location: double getLatitude()&gt;" component="org.cert.WriteFile.Button1Listener">
+<in>getMyLocation</in>
+</source>
+<source method="&lt;android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)&gt;" component="org.cert.WriteFile.Button1Listener">
+<in>getMyLocation</in>
+</source>
+</flow>
+<flow>
+<sink method="&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;"></sink>
+<source method="Stmt($r1 := @parameter2: android.content.Intent)" component="org.cert.WriteFile.MainActivity">
+<in>onActivityResult</in>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;" component="org.cert.WriteFile.MainActivity">
+<in>onActivityResult</in>
+</source>
+<source method="&lt;android.content.Intent: android.os.Bundle getExtras()&gt;" component="org.cert.WriteFile.MainActivity">
+<in>onActivityResult</in>
+</source>
+</flow>
+<flow>
+<sink method="&lt;java.io.FileOutputStream: void write(byte[])&gt;"></sink>
+<source method="Stmt($r1 := @parameter2: android.content.Intent)" component="org.cert.WriteFile.MainActivity">
+<in>onActivityResult</in>
+</source>
+<source method="&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;" component="org.cert.WriteFile.MainActivity">
+<in>onActivityResult</in>
+</source>
+<source method="&lt;android.content.Intent: android.os.Bundle getExtras()&gt;" component="org.cert.WriteFile.MainActivity">
+<in>onActivityResult</in>
+</source>
+</flow>
+<flow>
+<sink method="&lt;android.app.Activity: void startActivityForResult(android.content.Intent,int)&gt;" is-intent="1" intent-id="newField_8"></sink>
+<source method="&lt;android.location.Location: double getLongitude()&gt;" component="org.cert.WriteFile.Button1Listener">
+<in>getMyLocation</in>
+</source>
+<source method="&lt;android.location.Location: double getLatitude()&gt;" component="org.cert.WriteFile.Button1Listener">
+<in>getMyLocation</in>
+</source>
+<source method="&lt;android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)&gt;" component="org.cert.WriteFile.Button1Listener">
+<in>getMyLocation</in>
+</source>
+</flow>
+</results>

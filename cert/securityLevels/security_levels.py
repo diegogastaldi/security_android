@@ -18,8 +18,18 @@ class Check_levels(object):
         self._parse_security_levels()
         self._parse_assign_levels()
 
+    def _resolve_levels(slef, tuple_list):
+        result = "\n" + "Security Problems: " + "\n"
+        return result
+
     def _get_level(self, string):
-        return (string.split("level='")[1]).split("\')")[0]
+        for level in self._levels:
+            if (string.find("level='" + level + "'") != -1):
+                return level
+        if (string.find("level=None") != -1):
+            return "None"
+        self._die(string + " contain a unknown level") 
+        
         
     def check_levels(self, flows):
         tuple_list = []
@@ -36,6 +46,7 @@ class Check_levels(object):
                 t = (self._get_level(src), current_levels)
                 tuple_list.append(t)
         pprint(tuple_list)
+        return self._resolve_levels(tuple_list)
 
     def _die(self, text): 
         sys.stderr.write(text + "\n")

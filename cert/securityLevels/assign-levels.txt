@@ -1,6 +1,9 @@
 # Format: method -> Security Level
 # where "Security Level" must be defined in security-levels.txt
-<android.location.Location: double getLatitude()> -> Public
-<android.telephony.TelephonyManager: java.lang.String getDeviceId()> -> Public
-<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)> -> Public
-<android.location.Location: double getLongitude()> -> Public
+<android.location.Location: double getLatitude()> -> Private
+<android.telephony.TelephonyManager: java.lang.String getDeviceId()> -> Private
+<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)> -> Private
+<android.location.Location: double getLongitude()> -> Private
+<android.telephony.TelephonyManager: java.lang.String getDeviceId()> -> Private
+<android.os.Bundle: java.lang.String getString(java.lang.String)> -> Public
+<android.util.Log: int i(java.lang.String,java.lang.String)> -> Public

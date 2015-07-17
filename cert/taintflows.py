@@ -610,7 +610,8 @@ def main():
         cl_dict = stringize_intents({'Taints': sol_src})
         cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
         security_probl = check_levels.check_levels(cl_dict)
-        cl_out.write(cl_str)# + security_probl)
+        cl_out.write(cl_str)
+        cl_out.write(security_probl)
         
 main()
 

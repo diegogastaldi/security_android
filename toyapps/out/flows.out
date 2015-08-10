@@ -1,14 +1,14 @@
-Changed: OrderedSet([Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public'), Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level=None), Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level=None), Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')])
+Changed: OrderedSet([Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public'), Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'), Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='<java.io.FileOutputStream:voidwrite(byte[])>'), Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')])
 Changed: OrderedSet()
 ---- Flows with 0 intent(s) ---------------------------------
 [Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'), app='org.cert.echoer', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
  Flow(src=Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private'), app='org.cert.sendsms', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'), app='org.cert.sendsms', sink=Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level=None)),
+ Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'), app='org.cert.sendsms', sink=Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>')),
  Flow(src=Src(src='Src: <android.location.Location: double getLongitude()>', level='Private'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
  Flow(src=Src(src='Src: <android.location.Location: double getLatitude()>', level='Private'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
  Flow(src=Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
  Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level=None))]
+ Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='<java.io.FileOutputStream:voidwrite(byte[])>'))]
 ---- Flows with 1 intent(s) ---------------------------------
 [Flow(src=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8'), app=None, sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
  Flow(src=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), app=None, sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
@@ -29,30 +29,37 @@ Changed: OrderedSet()
 [Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private')]
 --------------------
 --------------------
+### 'Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>')': ###
+[Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public')]
 ### 'Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')': ###
 [Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public'),
  Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private'),
  Src(src='Src: <android.location.Location: double getLongitude()>', level='Private'),
  Src(src='Src: <android.location.Location: double getLatitude()>', level='Private'),
  Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private')]
-### 'Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level=None)': ###
-[Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public')]
-### 'Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level=None)': ###
+### 'Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='<java.io.FileOutputStream:voidwrite(byte[])>')': ###
 [Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public')]
 --------------------
-[('Private', 'Private'),
+'tuple_list'
+[('Public', '<java.io.FileOutputStream:voidwrite(byte[])>'),
  ('Public', 'Public'),
  ('Private', 'Public'),
  ('Private', 'Public'),
  ('Private', 'Public'),
  ('Private', 'Public'),
- ('Public', 'None'),
  ('Private', 'Private'),
- ('Public', 'None'),
- ('Private', 'None'),
- ('Private', 'None'),
- ('Private', 'None'),
- ('Private', 'None'),
+ ('Private', 'Private'),
+ ('Public',
+  '<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'),
+ ('Private', 'Private'),
+ ('Private', 'newField_8'),
+ ('Private', 'newField_8'),
+ ('Private', 'newField_8'),
+ ('Private', 'newField_6'),
  ('Public', 'Public'),
- ('Private', 'Private'),
  ('Private', 'Private')]
+Levels: set(['Private', 'Semi-private1', 'Public', 'Semi-private3', 'Semi-private2'])
+Relations: set([('Public', 'Semi-private1'), ('Semi-private3', 'Private'), ('Public', 'Semi-private3'), ('Semi-private2', 'Private'), ('Public', 'Semi-private2'), ('Public', 'Private'), ('Semi-private1', 'Private')])
+Levels Methods: set([('<android.util.Log:inti(java.lang.String,java.lang.String)>', 'Public'), ('<android.location.Location:doublegetLatitude()>', 'Private'), ('<android.telephony.TelephonyManager:java.lang.StringgetDeviceId()>', 'Private'), ('<android.location.LocationManager:android.location.LocationgetLastKnownLocation(java.lang.String)>', 'Private'), ('<android.os.Bundle:java.lang.StringgetString(java.lang.String)>', 'Public'), ('<android.location.Location:doublegetLongitude()>', 'Private')])
+Vars: set(['<java.io.FileOutputStream:voidwrite(byte[])>', 'newField_6', 'newField_8', '<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'])
+

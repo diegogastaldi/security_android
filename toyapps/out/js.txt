@@ -8,7 +8,7 @@
         "Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6')": [
             "Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private')"
         ],
-        "Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level=None)": [
+        "Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>')": [
             "Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public')"
         ],
         "Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')": [
@@ -18,7 +18,7 @@
             "Src(src='Src: <android.location.Location: double getLatitude()>', level='Private')",
             "Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private')"
         ],
-        "Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level=None)": [
+        "Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='<java.io.FileOutputStream:voidwrite(byte[])>')": [
             "Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public')"
         ],
         "Src(src='Src: <android.location.Location: double getLatitude()>', level='Private')": [
@@ -38,4 +38,3 @@
         ]
     }
 }
-OK

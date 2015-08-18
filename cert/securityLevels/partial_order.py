@@ -1,5 +1,11 @@
 #!/usr/bin/python2
 from pprint import pprint
+import sys
+
+def die(text): 
+    sys.stderr.write(text + "\n")
+    sys.exit(1)
+
 class Partial_order(object):
 
     def __init__(self):
@@ -23,13 +29,49 @@ class Partial_order(object):
         return self._relations
 
     def add_methods(self, method):
+        if not (method[1] in self._levels):
+            self._die(method[1] + ": is an unknown level in add_methods") 
         self._level_method.add(method)
 
     def add_var(self, var):
-    	self._vars.add(var)
+        self._vars.add(var)
 
     def get_vars(self):
-    	return self._vars
+        return self._vars
+ 
+    def bottom(self):
+        bottom = list(self._relations)[0][0]
+        for relation in self._relations:
+            if (bottom == relation[1]):
+                bottom = relation[0]
+        return bottom
+
+    def supremum(self, levels):
+        for l in levels:
+            if not (l in self._levels):
+                die("Supremum error")
+        greater_levels = {}
+        # Greater for each level
+        for level in levels:
+            greater_levels[level] = set()
+            greater_levels[level].add(level)
+            for rel in self._relations:
+                if level == rel[0]:
+                    greater_levels[level].add(rel[1])
+        greater = set()
+        greater = greater_levels[levels.pop()]
+        for level in levels:
+            greater = greater.intersection(greater_levels[level])
+        aux_greater = greater.copy()
+        for g in aux_greater:
+            for rel in self._relations:
+                if ((g == rel[1]) and (rel[0] != g) and (rel[0] in greater)):
+                    greater.remove(g)
+                    break
+
+        if len(greater) != 1:
+            die("Supremum error.")
+        return greater.pop()
 
     def assign_level(self, method):
         for current_method in self._level_method:
@@ -40,4 +82,4 @@ class Partial_order(object):
         return method
 
     def __repr__(self):
-        return "Levels: " + str(self._levels) + "\n" + "Relations: " + str(self._relations) + "\n" + "Levels Methods: " + str(self._level_method) + "\n" + "Vars: " + str(self._vars) + "\n"
+        return "Partial Order: \n Levels: " + str(self._levels) + "\n" + "Relations: " + str(self._relations) + "\n" + "Levels Methods: " + str(self._level_method) + "\n" + "Vars: " + str(self._vars) + "\n"

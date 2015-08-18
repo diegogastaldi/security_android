@@ -40,26 +40,9 @@ Changed: OrderedSet()
 ### 'Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='<java.io.FileOutputStream:voidwrite(byte[])>')': ###
 [Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='Public')]
 --------------------
-'tuple_list'
-[('Public', '<java.io.FileOutputStream:voidwrite(byte[])>'),
- ('Public', 'Public'),
- ('Private', 'Public'),
- ('Private', 'Public'),
- ('Private', 'Public'),
- ('Private', 'Public'),
- ('Private', 'Private'),
- ('Private', 'Private'),
- ('Public',
-  '<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'),
- ('Private', 'Private'),
- ('Private', 'newField_8'),
- ('Private', 'newField_8'),
- ('Private', 'newField_8'),
- ('Private', 'newField_6'),
- ('Public', 'Public'),
- ('Private', 'Private')]
-Levels: set(['Private', 'Semi-private1', 'Public', 'Semi-private3', 'Semi-private2'])
-Relations: set([('Public', 'Semi-private1'), ('Semi-private3', 'Private'), ('Public', 'Semi-private3'), ('Semi-private2', 'Private'), ('Public', 'Semi-private2'), ('Public', 'Private'), ('Semi-private1', 'Private')])
+Partial Order: 
+ Levels: set(['Semi-public1', 'Semi-public2', 'Semi-public3', 'Private', 'Semi-private1', 'Semi-private3', 'Semi-private2', 'Public'])
+Relations: set([('Semi-public3', 'Semi-private3'), ('Public', 'Semi-private1'), ('Semi-private1', 'Semi-private1'), ('Public', 'Private'), ('Semi-public3', 'Semi-public3'), ('Semi-private3', 'Private'), ('Public', 'Semi-private2'), ('Semi-public2', 'Semi-public2'), ('Semi-public1', 'Semi-public1'), ('Semi-public1', 'Semi-private1'), ('Public', 'Semi-public3'), ('Semi-public1', 'Private'), ('Semi-public2', 'Semi-private2'), ('Semi-private2', 'Private'), ('Public', 'Semi-public2'), ('Semi-private1', 'Private'), ('Public', 'Semi-private3'), ('Public', 'Public'), ('Semi-private3', 'Semi-private3'), ('Semi-private2', 'Semi-private2'), ('Public', 'Semi-public1'), ('Semi-public3', 'Private'), ('Private', 'Private'), ('Semi-public2', 'Private')])
 Levels Methods: set([('<android.util.Log:inti(java.lang.String,java.lang.String)>', 'Public'), ('<android.location.Location:doublegetLatitude()>', 'Private'), ('<android.telephony.TelephonyManager:java.lang.StringgetDeviceId()>', 'Private'), ('<android.location.LocationManager:android.location.LocationgetLastKnownLocation(java.lang.String)>', 'Private'), ('<android.os.Bundle:java.lang.StringgetString(java.lang.String)>', 'Public'), ('<android.location.Location:doublegetLongitude()>', 'Private')])
 Vars: set(['<java.io.FileOutputStream:voidwrite(byte[])>', 'newField_6', 'newField_8', '<android.telephony.SmsManager:voidsendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'])
 

@@ -35,22 +35,35 @@ class Check_levels(object):
             return var
         self._die(string + " contain a unknown level") 
         
+    def show_security_levels(self, sl):
+        if (sl["correct"] == True):
+            return "Applications don't have security problems. \n Assigned security levels are: " + str(sl ["p"])
+        else:
+            return "Applications have security problems. \n Unassigned methods are: " + str(sl ["p"])
+Agregar info sobre error    
     def check_levels(self, flows):
-        inequalities = set()
+        inequalities_levels = list()
+        inequalities_methods = list()
         # Each element is a sink with its possible sources
         for flow in flows["Taints"]: 
             if (flow.startswith("Sink") or flow.startswith("Intent") or flow.startswith("Src")):
-                current_levels = self._get_level(flow)
+                current_sink_level = self._get_level(flow)
+                current_sink_method = flow
             else:
                 die("Unknown Type of Sink: " + flow)
             for src in flows["Taints"][flow]: 
                 if (src.startswith("Src")):
-                    t = (self._get_level(src, False), current_levels)
-                    inequalities.add(t)
+                    current_src_level = self._get_level(src, False)
+                    current_src_method = src
+                    t_l = (current_src_level, current_sink_level)
+                    inequalities_levels.append(t_l)
+                    t_m = (current_src_method, current_sink_method)
+                    inequalities_methods.append(t_m)                    
                 else:
                     die("Unknown Type of Src: " + src)                    
         #Parameters to algorithm
-        return tract_const_finite_semilattice(inequalities, self._order)
+        result = tract_const_finite_semilattice(inequalities_levels, self._order)
+        return self.show_security_levels(result)
     
     def _clean_line(self, line):
         return re.sub(r'\s+', '', line)

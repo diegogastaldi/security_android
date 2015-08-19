@@ -66,7 +66,6 @@ def drop(i):
         ns.remove(i)
 
 def tract_const_finite_semilattice(inequalities, order):
-    pprint(order)
     initialize(inequalities, order)
     while len(ns):
         (t, b) = pop()
@@ -76,7 +75,12 @@ def tract_const_finite_semilattice(inequalities, order):
                 insert(inequality)
             else:
                 drop(inequality)
+    out = {}
     for inequality in ilist:
         if not check(inequality, order):
-            return "Error"
-    return p
+            out ["correct"] = False
+            out ["p"] = inequality
+            return out
+    out ["correct"] = True
+    out ["p"] = p
+    return out

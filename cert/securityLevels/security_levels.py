@@ -35,12 +35,16 @@ class Check_levels(object):
             return var
         self._die(string + " contain a unknown level") 
         
-    def show_security_levels(self, sl):
+    def show_security_levels(self, sl, im):
         if (sl["correct"] == True):
             return "Applications don't have security problems. \n Assigned security levels are: " + str(sl ["p"])
         else:
-            return "Applications have security problems. \n Unassigned methods are: " + str(sl ["p"])
-Agregar info sobre error    
+            string = "Applications have security problems. \n The methods are: \n"
+            while len(im):
+                tm = im.pop()
+                string = string + str(tm) + "\n"
+            return string
+
     def check_levels(self, flows):
         inequalities_levels = list()
         inequalities_methods = list()
@@ -63,7 +67,7 @@ Agregar info sobre error
                     die("Unknown Type of Src: " + src)                    
         #Parameters to algorithm
         result = tract_const_finite_semilattice(inequalities_levels, self._order)
-        return self.show_security_levels(result)
+        return self.show_security_levels(result, inequalities_methods)
     
     def _clean_line(self, line):
         return re.sub(r'\s+', '', line)

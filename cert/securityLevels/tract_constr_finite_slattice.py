@@ -79,7 +79,6 @@ def tract_const_finite_semilattice(inequalities, order):
     for inequality in ilist:
         if not check(inequality, order):
             out ["correct"] = False
-            out ["p"] = inequality
             return out
     out ["correct"] = True
     out ["p"] = p

@@ -19,6 +19,7 @@ import re 																	# operaciones sobre expresiones regulares
 import pdb 																	# debugger
 from epicc_parser import parse_epicc 										# implementada en esta carpeta
 from securityLevels.security_levels import *
+from gui import *
 
 stop = pdb.set_trace # stop debbuger
 
@@ -441,11 +442,7 @@ def try_read_manifest_file(filename): # guarda en root el manifest si puede
         sys.stderr.write(traceback.format_exc())
     return root # retorna el root del arbol con la info del manifest
 
-# Parametros: .fd.xml .epicc y .manifest.xml
-def main():
-    # evalua version de phyton
-    if not(sys.version_info[0] == 2 and sys.version_info[1] >= 7):
-        die("Incompatible version of Python! This script needs Python 2.7.") # detiene y sale error
+def run():
     glo.manifest = OrderedDict()  # diccionario ordenado vacio
     flow_lists= []
     flow_files = []
@@ -611,6 +608,24 @@ def main():
         security_probl = check_levels.check_levels(cl_dict)
 #        cl_out.write(cl_str)
         cl_out.write(security_probl)
+
+def main_window(levels, entities):
+    gettext.install("app") # replace with the appropriate catalog name
+
+    app = wx.PySimpleApp(0)
+    wx.InitAllImageHandlers()
+    frame_1 = MyFrame(None, wx.ID_ANY, "")
+    frame_1.create(levels, entities)
+    app.SetTopWindow(frame_1)
+    frame_1.Show()
+    app.MainLoop()
+
+# Parametros: .fd.xml .epicc y .manifest.xml
+def main():
+    # evalua version de phyton
+    if not(sys.version_info[0] == 2 and sys.version_info[1] >= 7):
+        die("Incompatible version of Python! This script needs Python 2.7.") # detiene y sale error
+    gui = main_window() #VER PARAMETROS
         
 main()
 

@@ -46,22 +46,5 @@ class Test_partial_order(unittest.TestCase):
         self.assertEqual(self.order.supremum(set(["Semi-private3", "Semi-public3"])), "Semi-private3")
         self.assertEqual(self.order.supremum(set(["Semi-private3", "Semi-public3","Semi-public2"])), "Private")
 
-class Test_security_levels(unittest.TestCase):
-    def setUp(self):
-        check_levels = Check_levels()
-
-    def test_get_level(self):
-
-    def test_check_level(self):
-
-class Test_tract_constr_finite_slattice(unittest.TestCase):
-    def setUp(self):
-
-    def test_check(self):
-
-    def test_initialize(self):
-
-    def test_tract_const_finite_semilattice(self):
-
 if __name__ == '__main__':
     unittest.main() 

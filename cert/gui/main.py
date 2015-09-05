@@ -19,16 +19,17 @@ class MyFrame(wx.Frame):
     kwds["style"] = wx.DEFAULT_FRAME_STYLE
     wx.Frame.__init__(self, *args, **kwds)
 
-  def create(self, levels, entities):
+  def create(self, levels, entities, a_levels):
     # begin wxGlade: MyFrame.__init__
     self.combo_box = set()
     self.label = set()
+    self.a_levels = a_levels
     for entity in entities:
-      self.label.add(wx.StaticText(self, wx.ID_ANY, _(entity)))
+      self.label.add(wx.StaticText(self, wx.ID_ANY, _(entity), size = wx.Size (-1, 22)))
       self.combo_box.add(wx.ComboBox(self, wx.ID_ANY, choices=[(_( level)) for level in levels], style=wx.CB_DROPDOWN))
 
     self.button_1 = wx.Button(self, wx.ID_ANY, _("Run"))
-#    self.button_1.Bind(wx.EVT_BUTTON, self.OnClose)
+    self.button_1.Bind(wx.EVT_BUTTON, self.analize_levels)
     self.button_2 = wx.Button(self, wx.ID_ANY, _("Close"))
     self.button_2.Bind(wx.EVT_BUTTON, self.OnClose)
     self.__set_properties()
@@ -46,6 +47,9 @@ class MyFrame(wx.Frame):
     dlg.Destroy()
     if result == wx.ID_OK:
       self.Destroy()
+ 
+  def analize_levels(self, event):
+    self.a_levels()  
 
   def __do_layout(self):
     # begin wxGlade: MyFrame.__do_layout
@@ -83,13 +87,3 @@ class MyApp(wx.App):
 # end of class MyApp
 
 # end of class Main_frame
-if __name__ == "__main__":
-  gettext.install("app") # replace with the appropriate catalog name
-
-  app = wx.PySimpleApp(0)
-  wx.InitAllImageHandlers()
-  frame_1 = MyFrame(None, wx.ID_ANY, "")
-  frame_1.create(["Private", "Public"], ["send","location"])
-  app.SetTopWindow(frame_1)
-  frame_1.Show()
-  app.MainLoop()

@@ -6,20 +6,20 @@
 # Contributors: Will Klieber, Lori Flynn, Amar Bhosale
 ###############################################################################
 
-import sys 																	# biblio estandar
-import os 																	# funciones para interactuar con el sistema operativo
-import traceback															# seguimiento de la pila
-import xml.etree.ElementTree as ET 											# objeto contenedor para almacenar estructuras en memoria
-import subprocess 															# comunicacion entre procesos
-from collections import * 													# provee implementaciones de listas, conjuntos, ...
-from pprint import pprint 													# permite mostrar estructuras de manera legible
-from OrderedSet import OrderedSet 											# implementada en esta carpeta
+import sys                                                                     # biblio estandar
+import os                                                                     # funciones para interactuar con el sistema operativo
+import traceback                                                            # seguimiento de la pila
+import xml.etree.ElementTree as ET                                             # objeto contenedor para almacenar estructuras en memoria
+import subprocess                                                             # comunicacion entre procesos
+from collections import *                                                     # provee implementaciones de listas, conjuntos, ...
+from pprint import pprint                                                     # permite mostrar estructuras de manera legible
+from OrderedSet import OrderedSet                                             # implementada en esta carpeta
 from collections import OrderedDict
-import re 																	# operaciones sobre expresiones regulares 
-import pdb 																	# debugger
-from epicc_parser import parse_epicc 										# implementada en esta carpeta
+import re                                                                     # operaciones sobre expresiones regulares 
+import pdb                                                                     # debugger
+from epicc_parser import parse_epicc                                         # implementada en esta carpeta
 from securityLevels.security_levels import *
-from gui import *
+from gui.main import *
 
 stop = pdb.set_trace # stop debbuger
 
@@ -52,8 +52,8 @@ class Glo(object): # descriptor de apps
     def __init__(self):
         self.mainfest = {} # Diccionario donde la clave es el paquete de la app y tiene una Estructura con el manifest.xml
         self.filter = {} # Diccionario donde la clave es el paquete de la app sacado del manifest 
-        				 # cada campor del diccionario tiene un diccionario donde la clave es el nombre de la actividad 
-        				 # y el valor es una lista con sus intent filters
+                         # cada campor del diccionario tiene un diccionario donde la clave es el nombre de la actividad 
+                         # y el valor es una lista con sus intent filters
         self.flows = {} # [source, app, sink]
         self.epicc = {} # # ret diccionario con funcion, conjunto ordenado de intents y lista de intents
         self.match_by_tx = {}
@@ -79,15 +79,15 @@ def find_flows(root, check_levels): # root -> archivo.fd.xml con flow -> sink fl
     pkg_name = root.attrib['package'] # campo package
     ret = []
 
-    for flow in root.findall("flow"):	# cada flow tiene sink y source
-        sink = flow.find("sink").attrib['method'] 	# obtiene el sink del flow
-        if flow.find("sink").attrib.get('is-intent') == "1": 	# is intent es un atributo -> si es 1 es un intent
-            intent_id = flow.find("sink").attrib.get('intent-id')	# obtiene el id del intent
+    for flow in root.findall("flow"):    # cada flow tiene sink y source
+        sink = flow.find("sink").attrib['method']     # obtiene el sink del flow
+        if flow.find("sink").attrib.get('is-intent') == "1":     # is intent es un atributo -> si es 1 es un intent
+            intent_id = flow.find("sink").attrib.get('intent-id')    # obtiene el id del intent
             if (intent_id is None):
                 sys.stderr.write("Error: Intent in %s is missing intent-id!\n" % pkg_name)
             sink_component = flow.find("sink").get('component') # obtiene el campo component de sink -> Button1Lister o MainActivity en lo ejemplos
         #    sink_component = None # FIXME: for debugging!?
-            sink = Intent(tx=(pkg_name, sink_component), rx=None, intent_id=intent_id) 	# si es un intent arma la tupla del mismo
+            sink = Intent(tx=(pkg_name, sink_component), rx=None, intent_id=intent_id)     # si es un intent arma la tupla del mismo
         elif flow.find("sink").attrib.get('is-intent-result') == "1":
             sink_component = flow.find("sink").get('component')
         #    sink_component = None # FIXME: for debugging!?
@@ -145,7 +145,7 @@ def match_intent_attr(tx, rx):
 
     def match_intent_subcase(epicc, filt):
         # This method implements the action, category, and data tests described in
-    	# donde la clave de busqueda es el name
+        # donde la clave de busqueda es el name
         # http://developer.android.com/guide/components/intents-filters.html#Resolution
         # Epicc does not produce URI information, so we ignore the URI tests.
         assert(isinstance(filt, IntentFilter))
@@ -406,7 +406,7 @@ def read_intent_filter(intent_node): # diccionario con claves el nombre del camp
     return intent_filter
 
 def read_intent_filters_from_manifest(root): # root es el manifest: retorna un diccionario ordenado con actividades y sus intent_filters
-																						 # donde la clave de busqueda es el name
+                                                                                         # donde la clave de busqueda es el name
     ret = OrderedDict()
     # Intent filters can be used with Activities as well as Activity-aliases
     # Alias is used to have a different label for the same activity
@@ -442,7 +442,10 @@ def try_read_manifest_file(filename): # guarda en root el manifest si puede
         sys.stderr.write(traceback.format_exc())
     return root # retorna el root del arbol con la info del manifest
 
-def run():
+def main():
+    # evalua version de phyton
+    if not(sys.version_info[0] == 2 and sys.version_info[1] >= 7):
+        die("Incompatible version of Python! This script needs Python 2.7.") # detiene y sale error
     glo.manifest = OrderedDict()  # diccionario ordenado vacio
     flow_lists= []
     flow_files = []
@@ -452,6 +455,7 @@ def run():
     gv_out = None
     gv_legend = None
     cl_out = None
+    cl_out_from_file = True
     glo.is_quiet = False  # Forma de mostrar resultados
     if len(sys.argv[1:]) == 0: # sin argumento(Flujo de cada app)
         sys.stderr.write(
@@ -481,9 +485,14 @@ def run():
                 assert(not (gv_base.endswith(".gv"))) # si es false, produce asertionErr
                 gv_out = open(gv_base + ".gv", "w") # crea un archivo con extencion gv con permiso de escritura
                 gv_legend = open(gv_base + ".txt", "w")  # crea un archivo con extencion txt
-            elif arg == "--check_levels":
+            elif arg == "--check_levels_file":
                 cl_out_filename = arg_iter.next() # cl_out_filename creada aca
                 cl_out = open(cl_out_filename, "w") # Writes the Flows and taint solution in JSON format
+            elif arg == "--check_levels_gui":
+                cl_out_from_file = False
+                cl_out_filename = "js.txt"
+                cl_out = open(cl_out_filename, "w") # Writes the Flows and taint solution in JSON format
+
             else:
                 all_filenames.append(arg) # lista con nombre de archivos
         except StopIteration:
@@ -538,7 +547,7 @@ def run():
                 pprint(epicc)
         else:
             print("Unknown file type: " + filename)
-    check_levels = Check_levels()
+    check_levels = Check_levels(cl_out_from_file)
     for filename in flow_files: # archivos con extension fd.xml (Flujo de cada app)
         pkg_rename = None
         if ":" in filename:
@@ -602,30 +611,26 @@ def run():
             assert(0)
             return obj
     if cl_out:
-        import json
-        cl_dict = stringize_intents({'Taints': sol_src})
-        cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
-        security_probl = check_levels.check_levels(cl_dict)
-#        cl_out.write(cl_str)
-        cl_out.write(security_probl)
-
-def main_window(levels, entities):
-    gettext.install("app") # replace with the appropriate catalog name
-
-    app = wx.PySimpleApp(0)
-    wx.InitAllImageHandlers()
-    frame_1 = MyFrame(None, wx.ID_ANY, "")
-    frame_1.create(levels, entities)
-    app.SetTopWindow(frame_1)
-    frame_1.Show()
-    app.MainLoop()
-
-# Parametros: .fd.xml .epicc y .manifest.xml
-def main():
-    # evalua version de phyton
-    if not(sys.version_info[0] == 2 and sys.version_info[1] >= 7):
-        die("Incompatible version of Python! This script needs Python 2.7.") # detiene y sale error
-    gui = main_window() #VER PARAMETROS
+        def main_window(levels, entities, analize_leves):
+            import gettext
+            import wx
+            gettext.install("app") # replace with the appropriate catalog name
         
+            app = wx.PySimpleApp(0)
+            wx.InitAllImageHandlers()
+            frame_1 = MyFrame(None, wx.ID_ANY, "")
+            frame_1.create(levels, entities, analize_leves)
+            app.SetTopWindow(frame_1)
+            frame_1.Show()
+            app.MainLoop()
+
+        def analize_leves():
+            import json
+            cl_dict = stringize_intents({'Taints': sol_src})
+            cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
+            security_probl = check_levels.check_levels(cl_dict)
+            cl_out.write(security_probl)
+        main_window(check_levels.get_levels_order(), check_levels.get_vars_order(), analize_leves)
+
 main()
 

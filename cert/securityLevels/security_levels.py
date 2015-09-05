@@ -17,9 +17,16 @@ def die(text):
 class Check_levels(object):
     _order = Partial_order()
 
-    def __init__(self):
+    def __init__(self, from_file = True):
         self._parse_security_levels()
-        self._parse_assign_levels()
+        if from_file:
+            self._parse_assign_levels()
+
+    def get_levels_order(self):
+        return self._order.get_levels()
+
+    def get_vars_order(self):
+        return self._order.get_vars()
 
     def _get_level(self, string, is_sink = True):
         string = self._clean_line(string)

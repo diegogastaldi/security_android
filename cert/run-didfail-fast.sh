@@ -44,5 +44,5 @@ ulimit -v $max_mem # limite de memoria -> modificado para que ande
 
 orig_wd=`pwd` # actual directorio
 cd $outdir # cambia a directorio de salida
-$python -t -t $script_path/taintflows.py --check_levels js.txt $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out # ejecuta el taintflows con salida de epicc y fd  y guarda la salida en flows.out
+$python -t -t $script_path/taintflows.py --check_levels_gui $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out # ejecuta el taintflows con salida de epicc y fd  y guarda la salida en flows.out
 cd $orig_wd

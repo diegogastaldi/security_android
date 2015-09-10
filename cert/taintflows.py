@@ -556,44 +556,54 @@ def main():
         root = tree.getroot()     # root es la estructura de los archivos .fd.xml
         pkg_name = pkg_rename or root.attrib['package']
         flows = find_flows(root, check_levels)
-        glo.flows[pkg_name] = flows
-        flow_lists.append(flows)
 
-    def num_intents_in_flow(flow):
-        return sum((type(s) in [Intent, IntentResult]) for s in [flow.src, flow.sink]) 
+    def analize():
+        def num_intents_in_flow(flow):
+            return sum((type(s) in [Intent, IntentResult]) for s in [flow.src, flow.sink]) 
+        for filename in flow_files: # archivos con extension fd.xml (Flujo de cada app)
+            pkg_rename = None
+            if ":" in filename:
+                [pkg_rename, filename] = filename.split(":")
+            tree = ET.parse(filename) # obtiene una estructura para guardarla en una variable
+            root = tree.getroot()     # root es la estructura de los archivos .fd.xml
+            pkg_name = pkg_rename or root.attrib['package']
+            flows = find_flows(root, check_levels)
+            glo.flows[pkg_name] = flows
+            flow_lists.append(flows)
 
-    flows = flatten(flow_lists) 
-    flows = match_flows(flows)
-    solution = solve_flows(flows)
-    sol_src = {}
-    for (entity, taint_set) in solution.iteritems():
-        sol_src[entity] = OrderedSet(x for x in taint_set if (type(x)==Sink or type(x)==Src))
-
-    if not glo.is_quiet:
-        for num_intents in [0,1,2]:
-            print("---- Flows with %i intent(s) ---------------------------------" % num_intents)
-            pprint(filter(lambda x: num_intents_in_flow(x)==num_intents, flows))
-        print("--------------------------------------------------------------")
-        print("--------------------------------------------------------------")
-        sols = [[],[],[]]
-        for (entity, taint_set) in sol_src.iteritems():
-            if type(entity) == Intent: 
-                ix = 0
-            elif type(entity) == IntentResult:
-                ix = 1
-            elif type(entity)==Sink:
-                ix = 2
-            else:
-                assert(type(entity)==Src)
-                continue
-            sols[ix].append((entity, taint_set))
-        for ix in [0,1,2]:
+        flows = flatten(flow_lists) 
+        flows = match_flows(flows)
+        solution = solve_flows(flows)
+        sol_src = {}
+        for (entity, taint_set) in solution.iteritems():
+            sol_src[entity] = OrderedSet(x for x in taint_set if (type(x)==Sink or type(x)==Src))
+    
+        if not glo.is_quiet:
+            for num_intents in [0,1,2]:
+                print("---- Flows with %i intent(s) ---------------------------------" % num_intents)
+                pprint(filter(lambda x: num_intents_in_flow(x)==num_intents, flows))
+            print("--------------------------------------------------------------")
+            print("--------------------------------------------------------------")
+            sols = [[],[],[]]
+            for (entity, taint_set) in sol_src.iteritems():
+                if type(entity) == Intent: 
+                    ix = 0
+                elif type(entity) == IntentResult:
+                    ix = 1
+                elif type(entity)==Sink:
+                    ix = 2
+                else:
+                    assert(type(entity)==Src)
+                    continue
+                sols[ix].append((entity, taint_set))
+            for ix in [0,1,2]:
+                print("--------------------")
+                for (entity, taint_set) in sols[ix]:
+                    sys.stdout.write("### '%s': ###\n" % (entity,))
+                    pprint(list(taint_set))
             print("--------------------")
-            for (entity, taint_set) in sols[ix]:
-                sys.stdout.write("### '%s': ###\n" % (entity,))
-                pprint(list(taint_set))
-        print("--------------------")
-
+        return sol_src
+    
     def stringize_intents(obj): #??
         t = type(obj)
         if t in [str, int, type(None), Sink, Src]:
@@ -610,7 +620,9 @@ def main():
         else:
             assert(0)
             return obj
-    if cl_out:
+    if not cl_out:
+        analize()
+    else:
         def main_window(levels, entities, analize_leves):
             import gettext
             import wx
@@ -624,13 +636,19 @@ def main():
             frame_1.Show()
             app.MainLoop()
 
-        def analize_leves():
+        def analize_leves(tuples):
+            if tuples != None:  
+                check_levels.selection_assign_levels(tuples)
+            sol_src = analize()
             import json
             cl_dict = stringize_intents({'Taints': sol_src})
             cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
             security_probl = check_levels.check_levels(cl_dict)
             cl_out.write(security_probl)
-        main_window(check_levels.get_levels_order(), check_levels.get_vars_order(), analize_leves)
+        if cl_out_from_file:
+            analize_leves(None) 
+        else:
+            main_window(check_levels.get_levels_order(), check_levels.get_vars_order(), analize_leves)
 
 main()
 

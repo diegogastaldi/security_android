@@ -90,7 +90,7 @@ class Check_levels(object):
                 continue
             if (line.count("<=") != 1):
                 file_ptr.close()    
-                self.die(file_security_levels + ": each line must have a <=")   
+                die(file_security_levels + ": each line must have a <=")   
             line = self._clean_line(line)
             current_levels = line.split("<=")
             levels_tuple = current_levels[0], current_levels[1]
@@ -116,6 +116,12 @@ class Check_levels(object):
             levels_tuple = current_method[0], current_method[1]
             
             self._order.add_methods(levels_tuple)
+
+    def selection_assign_levels(self, tuples): 
+        for t in tuples:
+            if t[1] != None:
+                self._order.add_methods(t)
+        pprint(self._order)
 
     def assign_level(self, method):
         return self._order.assign_level(self._clean_line(method))

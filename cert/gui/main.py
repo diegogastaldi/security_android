@@ -5,7 +5,7 @@
 #
 
 import wx
-
+from pprint import pprint
 # begin wxGlade: dependencies
 import gettext
 # end wxGlade
@@ -23,10 +23,17 @@ class MyFrame(wx.Frame):
     # begin wxGlade: MyFrame.__init__
     self.combo_box = set()
     self.label = set()
+    self.level_method = dict()
     self.a_levels = a_levels
+    self.amount_entitites = len(entities)
+    i = 0
     for entity in entities:
       self.label.add(wx.StaticText(self, wx.ID_ANY, _(entity), size = wx.Size (-1, 22)))
-      self.combo_box.add(wx.ComboBox(self, wx.ID_ANY, choices=[(_( level)) for level in levels], style=wx.CB_DROPDOWN))
+      combo_box = wx.ComboBox(self, i, choices=[level for level in levels], style=wx.CB_READONLY)
+      combo_box.Bind(wx.EVT_COMBOBOX, self.OnSelection)
+      self.combo_box.add(combo_box)
+      self.level_method [i] = (entity, None)
+      i += 1
 
     self.button_1 = wx.Button(self, wx.ID_ANY, _("Run"))
     self.button_1.Bind(wx.EVT_BUTTON, self.analize_levels)
@@ -48,8 +55,20 @@ class MyFrame(wx.Frame):
     if result == wx.ID_OK:
       self.Destroy()
  
+  def OnSelection(self, e):
+    i = e.GetId()
+    level = e.GetString() 
+    entity = self.level_method [i] [0]
+    self.level_method [i] = (entity, level.encode('ascii'))
+
   def analize_levels(self, event):
-    self.a_levels()  
+    # Obtain selected levels
+    tuples = set()
+    i = 0
+    while (i < self.amount_entitites):
+      tuples.add(self.level_method [i])
+      i += 1
+    self.a_levels(tuples) # conjunto de pares method level
 
   def __do_layout(self):
     # begin wxGlade: MyFrame.__do_layout

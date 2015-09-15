@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 from pprint import pprint
+from securityLevels.permissions.permissions import *
 import sys
 
 def die(text): 
@@ -79,7 +80,7 @@ class Partial_order(object):
             if current_method[0] == method:
                 return current_method[1]
         # This method don't have a level assigned
-        self._vars.add(method)
+        self._vars.add(get_category_permission(method))
         return method
 
     def __repr__(self):

@@ -20,6 +20,7 @@ import pdb                                                                     #
 from epicc_parser import parse_epicc                                         # implementada en esta carpeta
 from securityLevels.security_levels import *
 from gui.main import *
+from gui.out import *
 
 stop = pdb.set_trace # stop debbuger
 
@@ -636,6 +637,15 @@ def main():
             frame_1.Show()
             app.MainLoop()
 
+        def out_window(security_probl):
+            import wx
+
+            wx.InitAllImageHandlers()
+            dialog_1 = MyDialog(None, wx.ID_ANY, "")
+            dialog_1.create(security_probl)
+
+            dialog_1.Show()
+
         def analize_leves(tuples):
             if tuples != None:  
                 check_levels.selection_assign_levels(tuples)
@@ -645,6 +655,7 @@ def main():
             cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
             security_probl = check_levels.check_levels(cl_dict)
             cl_out.write(security_probl)
+            out_window(security_probl)
         if cl_out_from_file:
             analize_leves(None) 
         else:

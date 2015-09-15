@@ -36,7 +36,7 @@ class MyFrame(wx.Frame):
       i += 1
 
     self.button_1 = wx.Button(self, wx.ID_ANY, _("Run"))
-    self.button_1.Bind(wx.EVT_BUTTON, self.analize_levels)
+    self.button_1.Bind(wx.EVT_BUTTON, self.OnRun)
     self.button_2 = wx.Button(self, wx.ID_ANY, _("Close"))
     self.button_2.Bind(wx.EVT_BUTTON, self.OnClose)
     self.__set_properties()
@@ -61,14 +61,16 @@ class MyFrame(wx.Frame):
     entity = self.level_method [i] [0]
     self.level_method [i] = (entity, level.encode('ascii'))
 
-  def analize_levels(self, event):
+  def OnRun(self, event):
     # Obtain selected levels
     tuples = set()
     i = 0
     while (i < self.amount_entitites):
       tuples.add(self.level_method [i])
       i += 1
+    self.Destroy()
     self.a_levels(tuples) # conjunto de pares method level
+    # Create result window 
 
   def __do_layout(self):
     # begin wxGlade: MyFrame.__do_layout

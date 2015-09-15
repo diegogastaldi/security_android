@@ -40,7 +40,7 @@ class Check_levels(object):
             var = (string.split("intent_id='")[1]).split("'")[0]
             self._order.add_var(var)
             return var
-        self._die(string + " contain a unknown level") 
+        _die(string + " contain a unknown level") 
         
     def show_security_levels(self, sl, im):
         if (sl["correct"] == True):
@@ -121,7 +121,6 @@ class Check_levels(object):
         for t in tuples:
             if t[1] != None:
                 self._order.add_methods(t)
-        pprint(self._order)
 
     def assign_level(self, method):
         return self._order.assign_level(self._clean_line(method))

@@ -36,6 +36,10 @@ class Partial_order(object):
         self._vars.remove(method[0])
 
     def add_var(self, var):
+        for current_method in self._level_method:
+            if current_method[0] == var:
+                die(var + " has assigned level")
+
         self._vars.add(var)
 
     def get_vars(self):
@@ -76,12 +80,13 @@ class Partial_order(object):
         return greater.pop()
 
     def assign_level(self, method):
+        new_name = get_category_permission(method)
         for current_method in self._level_method:
-            if current_method[0] == method:
+            if current_method[0] == new_name:
                 return current_method[1]
         # This method don't have a level assigned
-        self._vars.add(get_category_permission(method))
-        return method
+        self._vars.add(new_name)
+        return new_name
 
     def __repr__(self):
         return "Partial Order: \n Levels: " + str(self._levels) + "\n" + "Relations: " + str(self._relations) + "\n" + "Levels Methods: " + str(self._level_method) + "\n" + "Vars: " + str(self._vars) + "\n"

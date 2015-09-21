@@ -647,7 +647,7 @@ def main():
             dialog_1.Show()
 
         def analize_leves(tuples):
-            if tuples != None:  
+            if tuples != None: 
                 check_levels.selection_assign_levels(tuples)
             sol_src = analize()
             import json

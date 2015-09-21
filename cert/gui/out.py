@@ -32,7 +32,6 @@ class MyDialog(wx.Dialog):
     def OnOk(self, event):
         self.Destroy()
 
-
     def __set_properties(self):
         # begin wxGlade: MyDialog.__set_properties
         self.SetTitle(_("Result"))

@@ -1,3 +1,9 @@
+Permission:android.permission.BUNDLE
+1 Callers:
+<android.os.Bundle:java.lang.String getString(java.lang.String)>
+Permission:android.permission.LOG
+1 Callers:
+<android.util.Log: int i(java.lang.String,java.lang.String)>
 Permission:android.permission.CHANGE_WIFI_STATE
 472 Callers:
 <com.android.server.WifiService: void enforceChangePermission()> (20)
@@ -9227,7 +9233,8 @@ Permission:android.permission.WRITE_SOCIAL_STREAM
 <com.android.contacts.editor.StructuredNameEditorView: void onTypeSelectionChange(int)> (1)
 <com.android.contacts.editor.TextFieldsEditorView: void onTypeSelectionChange(int)> (1)
 Permission:android.permission.WRITE_EXTERNAL_STORAGE
-86 Callers:
+87 Callers:
+<java.io.FileOutputStream: void write(byte[])>
 <com.android.providers.downloads.DownloadProvider: android.net.Uri insert(android.net.Uri,android.content.ContentValues)> (1)
 <com.android.providers.media.MediaProvider: android.os.ParcelFileDescriptor openFileAndEnforcePathPermissionsHelper(android.net.Uri,java.lang.String)> (1)
 <com.android.providers.media.MediaProvider: android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String)> (1)
@@ -9340,7 +9347,9 @@ Permission:android.permission.REORDER_TASKS
 <android.app.ActivityManagerNative: void moveTaskBackwards(int)> (2)
 <android.app.IActivityManager: void moveTaskBackwards(int)> ()
 Permission:android.permission.ACCESS_FINE_LOCATION
-450 Callers:
+452 Callers:
+<android.location.Location:doublegetLatitude()>
+<android.location.Location:doublegetLongitude()>
 <com.android.server.LocationManagerService: java.lang.String checkPermissionsSafe(java.lang.String,java.lang.String)> (5)
 <com.android.server.LocationManagerService: android.location.Location _getLastKnownLocationLocked(java.lang.String)> (1)
 <com.android.server.LocationManagerService: android.os.Bundle _getProviderInfoLocked(java.lang.String)> (1)

@@ -3,4 +3,4 @@
 READ_PHONE_STATE -> Private
 ACCESS_FINE_LOCATION -> Private
 READ_PHONE_STATE -> Public
-<android.util.Log: int i(java.lang.String,java.lang.String)> -> Public
+LOG -> Public

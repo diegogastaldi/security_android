@@ -21,17 +21,17 @@ class MyFrame(wx.Frame):
 
   def create(self, levels, entities, a_levels):
     # begin wxGlade: MyFrame.__init__
-    self.combo_box = set()
-    self.label = set()
+    self.combo_box = list()
+    self.label = list()
     self.level_method = dict()
     self.a_levels = a_levels
     self.amount_entitites = len(entities)
     i = 0
     for entity in entities:
-      self.label.add(wx.StaticText(self, wx.ID_ANY, _(entity), size = wx.Size (-1, 22)))
+      self.label.append(wx.StaticText(self, i, _(entity), size = wx.Size (-1, 22)))
       combo_box = wx.ComboBox(self, i, choices=[level for level in levels], style=wx.CB_READONLY)
       combo_box.Bind(wx.EVT_COMBOBOX, self.OnSelection)
-      self.combo_box.add(combo_box)
+      self.combo_box.append(combo_box)
       self.level_method [i] = (entity, None)
       i += 1
 

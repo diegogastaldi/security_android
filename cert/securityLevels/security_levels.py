@@ -36,15 +36,15 @@ class Check_levels(object):
         for var in self._order.get_vars():
             if (string.find("level='" + var + "'") != -1):
                 return var
-        if (is_sink and string.find("intent_id")):
+        if (is_sink and (string.find("intent_id")) != -1):
             var = (string.split("intent_id='")[1]).split("'")[0]
             self._order.add_var(var)
             return var
-        _die(string + " contain a unknown level") 
+        die(string + " contain a unknown level") 
         
     def show_security_levels(self, sl, im):
         if (sl["correct"] == True):
-            return "Applications don't have security problems. \n Assigned security levels are: " + str(sl ["p"])
+            return "Applications don't have security problems. \n Assigned security levels are: \n" + str(sl ["p"])
         else:
             string = "Applications have security problems. \n The methods are: \n"
             while len(im):

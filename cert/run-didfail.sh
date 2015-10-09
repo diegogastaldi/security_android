@@ -1,8 +1,8 @@
 #!/bin/bash
 script_name="$0"
-script_name=`readlink -m "$script_name"`  # Genera el path completo a la carpeta $0 -> /home/diego/didfail/cert/run-didfail.sh
-export script_path=`dirname $script_name` # Genera /home/diego/didfail/cert
-paths_local="$script_path/paths.local.sh" # Genera /home/diego/didfail/cert/paths.local.sh
+script_name=`readlink -m "$script_name"`  
+export script_path=`dirname $script_name` 
+paths_local="$script_path/paths.local.sh" 
 
 if [ ! -f $paths_local ]; then
     echo "Before running this script, copy paths.template.sh to paths.local.sh"
@@ -11,16 +11,16 @@ if [ ! -f $paths_local ]; then
     exit
 fi
 
-source $paths_local # ejecuta # Genera /home/diego/didfail/cert/paths.local.sh
+source $paths_local 
 
 if [ $# -lt 2 ]; then
     echo "Usage: `basename $0` outdir apk_1 ... apk_n"
     echo "No spaces are allowed in outdir or apk filenames."
     exit
 fi
-export outdir=$1 # directorio de salida -> ~/didfail/toyapps/out/
-shift # ??
-export outdir=`readlink -m "$outdir"` # hace los paths absolutos
+export outdir=$1 
+shift 
+export outdir=`readlink -m "$outdir"` 
 if [ -f "$outdir" ]; then
     if [ ! -d "$outdir" ]; then
 	echo "Not a directory: $outdir"
@@ -29,20 +29,20 @@ if [ -f "$outdir" ]; then
 fi
 
 if [ ! -d "$outdir" ]; then mkdir "$outdir"; fi
-if [ ! -d "$outdir/log" ]; then mkdir "$outdir/log"; fi # crea directorios de salida
+if [ ! -d "$outdir/log" ]; then mkdir "$outdir/log"; fi 
 
-ulimit -v $max_mem # limite de memoria -> modificado para que ande
+ulimit -v $max_mem 
 
-for apk_file in $@ # arreglo de parametros
+for apk_file in $@ 
 do
     echo Processing $apk_file
-    $script_path/run-transformer.sh $outdir $apk_file # corre el run-tranformer.sh para cada apk
-    if [ $? -ne 0 ]; then continue; fi # ??
-    $script_path/run-epicc.sh $outdir $apk_file # corre el run-epicc.sh para cada apk
-    $script_path/run-flowdroid.sh $outdir $apk_file # corre el run-flowdroid.sh para cada apk
+    $script_path/run-transformer.sh $outdir $apk_file 
+    if [ $? -ne 0 ]; then continue; fi 
+    $script_path/run-epicc.sh $outdir $apk_file 
+    $script_path/run-flowdroid.sh $outdir $apk_file 
 done
 
-orig_wd=`pwd` # actual directorio
-cd $outdir # cambia a directorio de salida
-$python -t -t $script_path/taintflows.py --check_levels_gui $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out # ejecuta el taintflows con salida de epicc y fd  y guarda la salida en flows.out
+orig_wd=`pwd` 
+cd $outdir 
+$python -t -t $script_path/taintflows.py --check_levels_gui $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out 
 cd $orig_wd

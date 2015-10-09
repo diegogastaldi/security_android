@@ -5,16 +5,16 @@ if [ $# -lt 1 ]; then
 fi
 export outdir=$1
 
-for epicc in $outdir/*.epicc # recorre los archivos con extensio epicc
+for epicc in $outdir/*.epicc 
 do
-    epicc=`basename $epicc` # remueve los directorios del path y deja solo el nombre
-    base=${epicc%%.epicc} # elimina el punto epicc
-    fd=$base.fd.xml # agrega .fd.xml en fd
-    manifest=$base.manifest.xml # agrega .manifest.xml en manifest
+    epicc=`basename $epicc` 
+    base=${epicc%%.epicc} 
+    fd=$base.fd.xml 
+    manifest=$base.manifest.xml 
     if [ ! -f $outdir/$fd ]; then continue; fi
     if [ ! -f $outdir/$manifest ]; then continue; fi
-    echo $manifest $epicc $fd # si pasa los if mustra los archivos
+    echo $manifest $epicc $fd 
 done
 
-# cicla sobre los .epicc y le saca la extension para obtener los otros con el mismo nombre base 
-# que ya estan en el directorio
+
+

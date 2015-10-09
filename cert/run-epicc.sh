@@ -5,11 +5,11 @@ if [ $# -lt 2 ]; then
 fi
 export outdir=$1
 export apk_file=$2
-export outdir=`readlink -m $outdir` # path completo
+export outdir=`readlink -m $outdir` 
 
-apk_base=`basename $apk_file` # solo el nombre
-apk_base=${apk_base%%.apk} # sin extension
-apk_xform=$outdir/$apk_base.apk # ~/didfail/toyapps/out/
+apk_base=`basename $apk_file` 
+apk_base=${apk_base%%.apk} 
+apk_xform=$outdir/$apk_base.apk 
 
 ulimit -v $max_mem -t $max_time 
 

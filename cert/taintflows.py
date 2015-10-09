@@ -422,7 +422,7 @@ def read_intent_filters_from_manifest(root):
             glo.act_alias_to_targ[component.attrib[android_pfx + "name"]] = comp_name
         if comp_name.startswith("."): 
             comp_name = root.find('.').attrib['package'] + comp_name 
-        for intent_node in component.findall(".//intent-filter"): # intent filters
+        for intent_node in component.findall(".//intent-filter"):
             filter_list.append(read_intent_filter(intent_node)) # [action, category, mime_type]
         ret.setdefault(comp_name, []); # parameters: key to search -> comp_name, default value -> []
         ret[comp_name] += filter_list
@@ -443,21 +443,20 @@ def try_read_manifest_file(filename):
     return root
 
 def main():
-    # evalua version de phyton
     if not(sys.version_info[0] == 2 and sys.version_info[1] >= 7):
-        die("Incompatible version of Python! This script needs Python 2.7.") # detiene y sale error
+        die("Incompatible version of Python! This script needs Python 2.7.") 
     glo.manifest = OrderedDict()  # diccionario ordenado vacio
     flow_lists= []
     flow_files = []
     all_filenames = []
-    arg_iter = iter(sys.argv[1:])  # argumentos para iterar: archivos .fd.xml, .epicc y .manifest.xml
+    arg_iter = iter(sys.argv[1:]) 
     gv_base = None
     gv_out = None
     gv_legend = None
     cl_out = None
     cl_out_from_file = True
-    glo.is_quiet = False  # Forma de mostrar resultados
-    if len(sys.argv[1:]) == 0: # sin argumento(Flujo de cada app)
+    glo.is_quiet = False 
+    if len(sys.argv[1:]) == 0:
         sys.stderr.write(
             ("Usage: %s [OPTIONS] [FILES]\n" % (sys.argv[0],)) +
             "Files: For each app, should include manifest, epicc, and flowdroid output.\n" +
@@ -468,7 +467,7 @@ def main():
             "  --quiet:        Don't write as much to stdout\n"
         )
         sys.exit(1)
-    while True: # itera sobre los parametros -> cuando no hay mas hace un break -> identifica opciones de ejecucion
+    while True:
         try:
             arg = arg_iter.next()
         except StopIteration:
@@ -476,43 +475,43 @@ def main():
         try:
             if arg == "--unsound": 
                 glo.unsound = True
-            elif arg == "--quiet": # no escribir por la salida estandar
+            elif arg == "--quiet":
                 glo.is_quiet = True
-            elif arg == "--gv": # generar grafico 
+            elif arg == "--gv":
                 gv_base = arg_iter.next()
-                if not(re.match("^[A-Za-z0-9_.-/]+$", gv_base)): # matching sobre expr reg -> empieza con letra o numero.. una o mas rep(Flujo de cada app)
-                    die("gv filename contains bad characters") # detiene y sale error
-                assert(not (gv_base.endswith(".gv"))) # si es false, produce asertionErr
-                gv_out = open(gv_base + ".gv", "w") # crea un archivo con extencion gv con permiso de escritura
-                gv_legend = open(gv_base + ".txt", "w")  # crea un archivo con extencion txt
-            elif arg == "--check_levels_file":
-                cl_out_filename = arg_iter.next() # cl_out_filename creada aca
+                if not(re.match("^[A-Za-z0-9_.-/]+$", gv_base)):
+                    die("gv filename contains bad characters")
+                assert(not (gv_base.endswith(".gv")))
+                gv_out = open(gv_base + ".gv", "w")
+                gv_legend = open(gv_base + ".txt", "w")
+            elif arg == "--check_levels_file": # Added
+                cl_out_filename = arg_iter.next()
                 cl_out = open(cl_out_filename, "w") # Writes the Flows and taint solution in JSON format
-            elif arg == "--check_levels_gui":
+            elif arg == "--check_levels_gui": # Added
                 cl_out_from_file = False
                 cl_out_filename = "js.txt"
                 cl_out = open(cl_out_filename, "w") # Writes the Flows and taint solution in JSON format
 
             else:
-                all_filenames.append(arg) # lista con nombre de archivos
+                all_filenames.append(arg)
         except StopIteration:
             die("Option '%s' expects an argument." % (arg,))
 
-    for filename in all_filenames: # cicla sobre los archivos pasados cmo parametros
+    for filename in all_filenames: # .apk
         pkg_rename = None
-        if ":" in filename: # si el nombre tiene ":" Cuando introduce los dos puntos? -> manifest.xml (permisos y filtro)
-            [pkg_rename, filename] = filename.split(":") # separa el nombre del paquete
-        root = try_read_manifest_file(filename) # root es el manifest representado como una estructura de arbol
-        if root != None: # pudo extraer el manifest
-            pkg_name = pkg_rename or root.find('.').attrib['package'] # obtiene paquete: x or y -> if x is false, then y, else x
+        if ":" in filename:
+            [pkg_rename, filename] = filename.split(":")
+        root = try_read_manifest_file(filename)
+        if root != None:
+            pkg_name = pkg_rename or root.find('.').attrib['package']
             glo.manifest[pkg_name] = root
-            glo.filter[pkg_name] = read_intent_filters_from_manifest(root) # obtiene el intent filter
+            glo.filter[pkg_name] = read_intent_filters_from_manifest(root)
             if len(all_filenames) == 1:
-                pprint(dict(glo.filter[pkg_name])) # dict convierte a formato diccionario y pprint lo muestra
-        elif filename.endswith(".xml"): # fd.xml (flujos source -> sink)
-            flow_files.append(filename) # si tiene el formato xml lo agrega a la lista flow_file
-        elif filename.endswith(".epicc"): # contiene actividades, servicios, receiver y provider y flujo ICC
-            (pkg_name, epicc) = parse_epicc(filename, as_dict=True) # pkg_name nombre del archivo y epicc diccionario con funcion, conjunto de intents y lista de intents (key: ids)
+                pprint(dict(glo.filter[pkg_name]))
+        elif filename.endswith(".xml"):
+            flow_files.append(filename)
+        elif filename.endswith(".epicc"):
+            (pkg_name, epicc) = parse_epicc(filename, as_dict=True) 
             # epicc -> {'newField_8': [{'Action': 'android.intent.action.SEND',
             #                           'Extras': ['secret'],
             #                           'Type': 'text/plain'}]}
@@ -521,13 +520,13 @@ def main():
             def die_epicc():
                 sys.stderr.write(traceback.format_exc())
                 die("Aborted due to error in parsing " + filename)
-            try: # chequea propiedades sobre el archivo epicc
+            try: 
                 assert(len(pkg_name) > 0)
                 assert(isinstance(epicc, dict))
-                warned_unknown = False # advertencia desconocida
-                for (intent_id, v) in epicc.iteritems(): # itera sobre los archivos .epicc # quien es v -> dicc de intent
-                    assert(isinstance(intent_id, str)) # intent_id is a string
-                    assert(isinstance(v, list)) # v es una lista de diccionarios
+                warned_unknown = False
+                for (intent_id, v) in epicc.iteritems():
+                    assert(isinstance(intent_id, str)) 
+                    assert(isinstance(v, list)) 
                     if intent_id == "*":
                         sys.stderr.write("Warning: Missing IntentID in %s\n" % (filename,))
                         warned_unknown = True # not used
@@ -541,31 +540,33 @@ def main():
                             die_epicc()
             except AssertionError as e:
                 die_epicc()
-            glo.epicc[pkg_name] = epicc # epicc diccionario con funcion, conjunto ordenado de intents y lista de intents
+            glo.epicc[pkg_name] = epicc 
             if len(all_filenames) == 1:
                 print "EPICC info:"
                 pprint(epicc)
         else:
             print("Unknown file type: " + filename)
+    # Creates levels chequer
     check_levels = Check_levels(cl_out_from_file)
-    for filename in flow_files: # archivos con extension fd.xml (Flujo de cada app)
+    for filename in flow_files:
         pkg_rename = None
         if ":" in filename:
             [pkg_rename, filename] = filename.split(":")
-        tree = ET.parse(filename) # obtiene una estructura para guardarla en una variable
-        root = tree.getroot()     # root es la estructura de los archivos .fd.xml
+        tree = ET.parse(filename)
+        root = tree.getroot()
         pkg_name = pkg_rename or root.attrib['package']
         flows = find_flows(root, check_levels)
 
+    # Solve Flows
     def analize():
         def num_intents_in_flow(flow):
             return sum((type(s) in [Intent, IntentResult]) for s in [flow.src, flow.sink]) 
-        for filename in flow_files: # archivos con extension fd.xml (Flujo de cada app)
+        for filename in flow_files:
             pkg_rename = None
             if ":" in filename:
                 [pkg_rename, filename] = filename.split(":")
-            tree = ET.parse(filename) # obtiene una estructura para guardarla en una variable
-            root = tree.getroot()     # root es la estructura de los archivos .fd.xml
+            tree = ET.parse(filename) 
+            root = tree.getroot()
             pkg_name = pkg_rename or root.attrib['package']
             flows = find_flows(root, check_levels)
             glo.flows[pkg_name] = flows
@@ -626,7 +627,7 @@ def main():
         def main_window(levels, entities, analize_leves):
             import gettext
             import wx
-            gettext.install("app") # replace with the appropriate catalog name
+            gettext.install("app") 
         
             app = wx.PySimpleApp(0)
             wx.InitAllImageHandlers()

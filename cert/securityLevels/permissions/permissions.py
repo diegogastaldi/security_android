@@ -27,8 +27,3 @@ def get_category_permission(method):
             if line.startswith(method):
                 return current_category
     return method
-
-def main():
-    print(get_category_permission("<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>"))
-
-main()

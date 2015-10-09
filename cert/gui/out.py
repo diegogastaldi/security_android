@@ -5,14 +5,7 @@
 #
 
 import wx
-
-# begin wxGlade: dependencies
 import gettext
-# end wxGlade
-
-# begin wxGlade: extracode
-# end wxGlade
-
 
 class MyDialog(wx.Dialog):
     def __init__(self, *args, **kwds):

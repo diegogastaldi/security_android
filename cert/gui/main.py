@@ -10,10 +10,6 @@ from pprint import pprint
 import gettext
 # end wxGlade
 
-# begin wxGlade: extracode
-# end wxGlade
-
-
 class MyFrame(wx.Frame):
   def __init__(self, *args, **kwds):  
     kwds["style"] = wx.DEFAULT_FRAME_STYLE
@@ -28,8 +24,8 @@ class MyFrame(wx.Frame):
     self.amount_entitites = len(entities)
     i = 0
     for entity in entities:
-      self.label.append(wx.StaticText(self, i, _(entity), size = wx.Size (-1, 22)))
-      combo_box = wx.ComboBox(self, i, choices=[level for level in levels], style=wx.CB_READONLY)
+      self.label.append(wx.StaticText(self, i, _(entity), size = wx.Size (-1, 30)))
+      combo_box = wx.ComboBox(self, i, size = wx.Size(-1, 30),choices=[level for level in levels], style=wx.CB_READONLY)
       combo_box.Bind(wx.EVT_COMBOBOX, self.OnSelection)
       self.combo_box.append(combo_box)
       self.level_method [i] = (entity, None)
@@ -45,7 +41,7 @@ class MyFrame(wx.Frame):
 
   def __set_properties(self):
     # begin wxGlade: MyFrame.__set_properties
-    self.SetTitle(_("Didfail"))
+    self.SetTitle(_("Didfail with security levels"))
     # end wxGlade
 
   def OnClose(self, event):
@@ -69,7 +65,7 @@ class MyFrame(wx.Frame):
       tuples.add(self.level_method [i])
       i += 1
     self.Destroy()
-    self.a_levels(tuples) # conjunto de pares method level
+    self.a_levels(tuples)
     # Create result window 
 
   def __do_layout(self):
@@ -95,16 +91,5 @@ class MyFrame(wx.Frame):
     sizer_1.Fit(self)
     self.Layout()
     # end wxGlade
-
-# end of class MyFrame
-class MyApp(wx.App):
-  def OnInit(self):
-    wx.InitAllImageHandlers()
-    frame_1 = MyFrame(None, wx.ID_ANY, "")
-    self.SetTopWindow(frame_1)
-    frame_1.Show()
-    return 1
-
-# end of class MyApp
 
 # end of class Main_frame

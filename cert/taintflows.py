@@ -6,37 +6,39 @@
 # Contributors: Will Klieber, Lori Flynn, Amar Bhosale
 ###############################################################################
 
-import sys                                                                     # biblio estandar
-import os                                                                     # funciones para interactuar con el sistema operativo
-import traceback                                                            # seguimiento de la pila
-import xml.etree.ElementTree as ET                                             # objeto contenedor para almacenar estructuras en memoria
-import subprocess                                                             # comunicacion entre procesos
-from collections import *                                                     # provee implementaciones de listas, conjuntos, ...
-from pprint import pprint                                                     # permite mostrar estructuras de manera legible
-from OrderedSet import OrderedSet                                             # implementada en esta carpeta
+import sys
+import os
+import traceback
+import xml.etree.ElementTree as ET
+import subprocess
+from collections import *
+from pprint import pprint
+from OrderedSet import OrderedSet
 from collections import OrderedDict
-import re                                                                     # operaciones sobre expresiones regulares 
-import pdb                                                                     # debugger
-from epicc_parser import parse_epicc                                         # implementada en esta carpeta
+import re
+import pdb # debugger
+from epicc_parser import parse_epicc
 from securityLevels.security_levels import *
 from gui.main import *
 from gui.out import *
 
-stop = pdb.set_trace # stop debbuger
+stop = pdb.set_trace
 
 Flow = namedtuple('Flow', ['src', 'app', 'sink'])
-Intent = namedtuple('Intent', ['tx', 'rx', 'intent_id']) # tx -> Quien envia intent - rx -> Quien recibe 
+Intent = namedtuple('Intent', ['tx', 'rx', 'intent_id'])
 IntentResult = namedtuple('IntentResult', ['i'])
+# Modified: New level field.
 Src = namedtuple('Src', ['src', 'level'])
 Sink = namedtuple('Sink', ['sink', 'level'])
 android_pfx = "{http://schemas.android.com/apk/res/android}"
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-def die(text): # Escribe text como salida de error
+def die(text):
     sys.stderr.write(text + "\n")
     sys.exit(1)
 
-def uniq_by_str(l): # Elimina repetidos
+# Removes Repeated
+def uniq_by_str(l):
     ret = []
     hit = set()
     for x in l:
@@ -46,22 +48,21 @@ def uniq_by_str(l): # Elimina repetidos
             ret.append(x)
     return ret
 
-def flatten(l): # toma una lista de listas y la convierte en una lista
+def flatten(l):
     return [item for sublist in l for item in sublist]
 
-class Glo(object): # descriptor de apps
+# Apps' descriptor
+class Glo(object): 
     def __init__(self):
-        self.mainfest = {} # Diccionario donde la clave es el paquete de la app y tiene una Estructura con el manifest.xml
-        self.filter = {} # Diccionario donde la clave es el paquete de la app sacado del manifest 
-                         # cada campor del diccionario tiene un diccionario donde la clave es el nombre de la actividad 
-                         # y el valor es una lista con sus intent filters
+        self.mainfest = {}
+        self.filter = {} # {App: {Activity: [Intent Filters]}}
         self.flows = {} # [source, app, sink]
-        self.epicc = {} # # ret diccionario con funcion, conjunto ordenado de intents y lista de intents
+        self.epicc = {} 
         self.match_by_tx = {}
         self.match_by_rx = {}
         self.match_by_tx_id = {}
         self.unsound = False
-        self.act_alias_to_targ = {} # campo asignado pero nunca usado
+        self.act_alias_to_targ = {}
 glo = Glo()
 
 class IntentFilter(object): 
@@ -73,43 +74,43 @@ class IntentFilter(object):
     def __repr__(self):
         return "IntentFilter(action=%r, category=%r, mime_type=%r)" % (self.action, self.category, self.mime_type)
 
-# ACA: cuando crea los intent, los sink y los source podriamos ver cuales son y agregarle el campo privilegio. Ademas sink
-# y source hacerlos como una tupla igual que intents. Y luego de solve_flows chequear que se cumpla los "<="
-def find_flows(root, check_levels): # root -> archivo.fd.xml con flow -> sink flow -> source 
-    # Toma la estructura y devuelve el tipo Flow (tupla definida arriba)
-    pkg_name = root.attrib['package'] # campo package
+# Modified: When intents, sinks and source are created, we add a level field from input gui or input file.
+def find_flows(root, check_levels):
+    pkg_name = root.attrib['package']
     ret = []
 
-    for flow in root.findall("flow"):    # cada flow tiene sink y source
-        sink = flow.find("sink").attrib['method']     # obtiene el sink del flow
-        if flow.find("sink").attrib.get('is-intent') == "1":     # is intent es un atributo -> si es 1 es un intent
-            intent_id = flow.find("sink").attrib.get('intent-id')    # obtiene el id del intent
+    for flow in root.findall("flow"):  # each flow has a sink and a source.
+        sink = flow.find("sink").attrib['method']
+        if flow.find("sink").attrib.get('is-intent') == "1":
+            intent_id = flow.find("sink").attrib.get('intent-id')
             if (intent_id is None):
                 sys.stderr.write("Error: Intent in %s is missing intent-id!\n" % pkg_name)
-            sink_component = flow.find("sink").get('component') # obtiene el campo component de sink -> Button1Lister o MainActivity en lo ejemplos
+            sink_component = flow.find("sink").get('component') 
         #    sink_component = None # FIXME: for debugging!?
-            sink = Intent(tx=(pkg_name, sink_component), rx=None, intent_id=intent_id)     # si es un intent arma la tupla del mismo
+            sink = Intent(tx=(pkg_name, sink_component), rx=None, intent_id=intent_id)
         elif flow.find("sink").attrib.get('is-intent-result') == "1":
             sink_component = flow.find("sink").get('component')
         #    sink_component = None # FIXME: for debugging!?
-            sink = IntentResult(Intent(tx=None, rx=(pkg_name, sink_component), intent_id=None)) # si es un intent result arma la tupla del mismo
+            sink = IntentResult(Intent(tx=None, rx=(pkg_name, sink_component), intent_id=None))
         else:
+        	# Obtains the level and assigns this to sink 
             sink = Sink("Sink: " + str(sink), check_levels.assign_level(sink))
-        for src_node in flow.findall("source"): # recorre los srcs
+        for src_node in flow.findall("source"):
             src = src_node.attrib['method']  
             component = None
-            if src.startswith("<android.content.Intent:") or ("getIntent" in src):  # proviene de un intent
+            if src.startswith("<android.content.Intent:") or ("getIntent" in src):
                 component = src_node.attrib['component']
         #        component = None # FIXME: for debugging!?
-                src = Intent(tx=None, rx=(pkg_name, component), intent_id=None)   # arma el intent
+                src = Intent(tx=None, rx=(pkg_name, component), intent_id=None)
             elif ("@parameter2: android.content.Intent" in src):  # FIXME: only for "android.app.Activity: void onActivityResult"
                 component = src_node.attrib['component']
         #        component = None # FIXME: for debugging!?
                 src = IntentResult(Intent(tx=(pkg_name, component), rx=None, intent_id=None))
             else:
+            	# Obtains the level and assigns this to source
                 src = Src("Src: " + str(src), check_levels.assign_level(str(src)))
             #FIXME: What if the the source and sinks are in different components?
-            ret.append(Flow(src=src, app=pkg_name, sink=sink))  # arma el flujo y lo agrega al resultado para cada src con el mismo sink
+            ret.append(Flow(src=src, app=pkg_name, sink=sink)) 
     return ret
 
 
@@ -119,7 +120,7 @@ def get_epicc_and_filters(tx, rx): # tx -> transmitted - rx -> received
     ((tx_pkg, tx_comp), tx_id) = (tx.tx, tx.intent_id)
     (rx_pkg, rx_comp) = rx.rx
     try:
-        epicc = glo.epicc[tx_pkg][tx_id] # glo es un descriptor de aplicaciones
+        epicc = glo.epicc[tx_pkg][tx_id]
     except KeyError as e:
         if id(tx) not in get_epicc_and_filters.missed:
             get_epicc_and_filters.missed.add(id(tx))
@@ -243,9 +244,8 @@ def generate_all_matches():
         #            comp = None # FIXME: for debugging!(Flujo de cada app)
                     rx = Intent(tx=None, rx=(rx_pkg,comp), intent_id=None)
                     if match_intent_attr(tx, rx):
-                        yield Intent(tx=tx.tx, rx=rx.rx, intent_id=intent_id) # funciona como return pero retorna un generator
-                                                                              # (solo puede ser leido una vez)
-                                                                              # chequear que se cumpla los "<="
+                        yield Intent(tx=tx.tx, rx=rx.rx, intent_id=intent_id) 
+
 def populate_matches():
     for (pkg, flows) in glo.flows.iteritems():
         pkg_epicc = glo.epicc[pkg]
@@ -256,7 +256,7 @@ def populate_matches():
         # pkg_epicc: {}
         # pkg_epicc: {'newField_8': [{'Action': 'android.intent.action.SEND', 'Extras': ['secret'], 'Type': 'text/plain'}]}"
         for flow in flows:
-            if isinstance(flow.sink, Intent): # si el sink es un intent
+            if isinstance(flow.sink, Intent): 
                 intent_id = flow.sink.intent_id
                 if (intent_id not in pkg_epicc) and ('*' in pkg_epicc):
                     pkg_epicc[intent_id] = pkg_epicc['*'] 
@@ -270,11 +270,11 @@ def populate_matches():
 
 
 def match_flows(half_flows):
-    populate_matches() # genera flujos con los intent salientes de los packetes con los intent filters
+    populate_matches()
     src_intents = OrderedSet()
     sink_intents = OrderedSet()
     src_intent_results = OrderedSet()
-    sink_intent_results = OrderedSet() # si el sink es un intent
+    sink_intent_results = OrderedSet()
     for flow in half_flows:
         if isinstance(flow.src, Intent):
             src_intents.add(flow.src)
@@ -339,8 +339,8 @@ def match_flows(half_flows):
                 return False
         return True
     ret = half_flows
-    ret = complete_src_intents(ret) # toma los src y genera los flujos con todos los sink posibles
-    ret = complete_sink_intents(ret) # toma los sink y genera los flujos con todos los src posibles
+    ret = complete_src_intents(ret) # takes the sources and flows it generates all possible sinks
+    ret = complete_sink_intents(ret) # takes the sinks and flows it generates all possible sources
     ret = filter(is_possible_flow, ret) # Construct a list from those elements of iterable for which function returns true.
     return list(OrderedSet(ret))
 
@@ -386,11 +386,11 @@ def solve_flows(Flows):
             print("Changed: " + str(changed))
     return taint
 
-def read_intent_filter(intent_node): # diccionario con claves el nombre del campo
-    assert(isinstance(intent_node, ET.Element)) # cheque que el parametro sea arbol
+def read_intent_filter(intent_node):
+    assert(isinstance(intent_node, ET.Element)) 
     assert(intent_node.tag == 'intent-filter') 
-    intent_filter = IntentFilter() # crea una instancia de la clase IntentFilter
-    for sub in intent_node.findall("*"): # itera sobre los filtros de una actividad determinada
+    intent_filter = IntentFilter() 
+    for sub in intent_node.findall("*"):
         filter_attr = OrderedDict()
         for (key, val) in sub.attrib.iteritems():
             # E.g., key might be "android:name" (for action and category) or
@@ -406,13 +406,12 @@ def read_intent_filter(intent_node): # diccionario con claves el nombre del camp
             die("Unexpected tag in intent-filter: '%s'!" % (sub.tag,))
     return intent_filter
 
-def read_intent_filters_from_manifest(root): # root es el manifest: retorna un diccionario ordenado con actividades y sus intent_filters
-                                                                                         # donde la clave de busqueda es el name
+def read_intent_filters_from_manifest(root):
     ret = OrderedDict()
     # Intent filters can be used with Activities as well as Activity-aliases
     # Alias is used to have a different label for the same activity
-    all_components = root.findall(".//activity")+root.findall(".//activity-alias") # // dos tabs
-    for component in all_components: # itera sobre las actividades declaradas en el manifest
+    all_components = root.findall(".//activity")+root.findall(".//activity-alias") # // two tabs
+    for component in all_components: # Activities declared in the manifest
         filter_list = []
         # Component name for an Activity is stored as the "name" attribute
         if component.tag == "activity":
@@ -420,28 +419,28 @@ def read_intent_filters_from_manifest(root): # root es el manifest: retorna un d
         # Component name for an Activity-alias is stored as the "targetActivity" attribute
         elif component.tag == "activity-alias":
             comp_name = component.attrib[android_pfx + "targetActivity"]
-            glo.act_alias_to_targ[component.attrib[android_pfx + "name"]] = comp_name # campo asignado pero nunca usado
-        if comp_name.startswith("."): # ninguno en el ejempl -> si el nombre esta solo le agrega el path
+            glo.act_alias_to_targ[component.attrib[android_pfx + "name"]] = comp_name
+        if comp_name.startswith("."): 
             comp_name = root.find('.').attrib['package'] + comp_name 
-        for intent_node in component.findall(".//intent-filter"): # itera sobre intent filters
+        for intent_node in component.findall(".//intent-filter"): # intent filters
             filter_list.append(read_intent_filter(intent_node)) # [action, category, mime_type]
-        ret.setdefault(comp_name, []); # parametros: key to search -> comp_name, default value -> []
-        ret[comp_name] += filter_list # para cada actividad genera una lista con sus intent filters y la guarda en el diccionario con su clave
+        ret.setdefault(comp_name, []); # parameters: key to search -> comp_name, default value -> []
+        ret[comp_name] += filter_list
     return ret
 
-def try_read_manifest_file(filename): # guarda en root el manifest si puede
+def try_read_manifest_file(filename):
     root = None
     try:
-        if filename.endswith(".apk"): # desscomprime la app y obtiene el manifest
+        if filename.endswith(".apk"):
             manifest_text = subprocess.check_output(
                 ["cd " + script_path + "; ./extract-manifest.sh " + os.path.realpath(filename)], shell=True)
-            root = ET.fromstring(manifest_text) # convierte en arbol desde texto
-        elif filename.endswith("AndroidManifest.xml") or filename.endswith(".manifest.xml"): # si ya es el manifest lo parsea
-            root = ET.parse(filename) # desde archivo.
+            root = ET.fromstring(manifest_text) # creates tree
+        elif filename.endswith("AndroidManifest.xml") or filename.endswith(".manifest.xml"):
+            root = ET.parse(filename)
     except ET.ParseError:
         sys.stderr.write("Error parsing %s\n" % (filename,))
         sys.stderr.write(traceback.format_exc())
-    return root # retorna el root del arbol con la info del manifest
+    return root
 
 def main():
     # evalua version de phyton

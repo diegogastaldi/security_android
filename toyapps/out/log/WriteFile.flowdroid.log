@@ -4,7 +4,7 @@ SLF4J: Found binding in [jar:file:/home/diego/didfail/workspace/soot-infoflow/li
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
 [main] INFO soot.jimple.infoflow.taintWrappers.EasyTaintWrapper - Loaded wrapper entries for 49 classes and 4 exclusions.
-[main] INFO soot.jimple.infoflow.android.SetupApplication - ARSC file parsing took 0.009575547 seconds
+[main] INFO soot.jimple.infoflow.android.SetupApplication - ARSC file parsing took 0.029121694 seconds
 Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
 Warning: java.lang.ref.Finalizer is a phantom class!
 Warning: android.hardware.display.DisplayManager is a phantom class!
@@ -53,11 +53,11 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
     }
 
 [Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.1 seconds.
+[Spark] Pointer Assignment Graph in 0.9 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.1 seconds.
-[Spark] Solution found in 0.1 seconds.
+[Spark] Propagation in 0.6 seconds.
+[Spark] Solution found in 0.6 seconds.
 Callback analysis done.
 Warning: TextView is a phantom class!
 Warning: org.cert.WriteFile.TextView is a phantom class!
@@ -70,105 +70,6 @@ Found 2 layout controls in file res/layout/activity_main.xml
 Found 2 layout controls
 Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
 Warning: java.lang.ref.Finalizer is a phantom class!
-Warning: android.hardware.display.DisplayManager is a phantom class!
-Warning: android.media.RemoteControlClient$OnGetPlaybackPositionListener is a phantom class!
-Warning: android.media.RemoteControlClient$OnPlaybackPositionUpdateListener is a phantom class!
-Warning: android.view.ViewTreeObserver$OnWindowAttachListener is a phantom class!
-Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom class!
-[main] WARN soot.jimple.infoflow.entryPointCreators.AndroidEntryPointCreator - Cannot create valid constructor for android.view.Menu, because it is an interface and cannot substitute with subclass
-[main] INFO soot.jimple.infoflow.entryPointCreators.AndroidEntryPointCreator - Generated main method:
-    public static void dummyMainMethod()
-    {
-        int $i0;
-        org.cert.WriteFile.MainActivity $r0;
-        android.os.Bundle $r1;
-        boolean $z0;
-        android.content.Intent $r2;
-        org.cert.WriteFile.Button1Listener $r3;
-        android.view.View $r4;
-
-        $i0 = 0;
-
-     label0:
-        if $i0 == 0 goto label7;
-
-        $r0 = new org.cert.WriteFile.MainActivity;
-        specialinvoke $r0.<org.cert.WriteFile.MainActivity: void <init>()>();
-        if $i0 == 1 goto label7;
-
-     label1:
-        $r1 = new android.os.Bundle;
-        specialinvoke $r1.<android.os.Bundle: void <init>()>();
-        virtualinvoke $r0.<org.cert.WriteFile.MainActivity: void onCreate(android.os.Bundle)>($r1);
-        $r1 = null;
-
-     label2:
-        if $i0 == 2 goto label3;
-
-        $z0 = virtualinvoke $r0.<org.cert.WriteFile.MainActivity: boolean onCreateOptionsMenu(android.view.Menu)>(null);
-
-     label3:
-        if $i0 == 3 goto label4;
-
-        $r2 = new android.content.Intent;
-        specialinvoke $r2.<android.content.Intent: void <init>()>();
-        virtualinvoke $r0.<org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>(0, 0, $r2);
-        $r2 = null;
-
-     label4:
-        $r3 = new org.cert.WriteFile.Button1Listener;
-        specialinvoke $r3.<org.cert.WriteFile.Button1Listener: void <init>(org.cert.WriteFile.MainActivity)>($r0);
-        if $i0 == 4 goto label5;
-
-        $r4 = new android.view.View;
-        specialinvoke $r4.<android.view.View: void <init>(android.content.Context)>($r0);
-        virtualinvoke $r3.<org.cert.WriteFile.Button1Listener: void onClick(android.view.View)>($r4);
-        $r4 = null;
-
-     label5:
-        if $i0 == 5 goto label2;
-
-        if $i0 == 6 goto label2;
-
-        if $i0 == 7 goto label2;
-
-        if $i0 == 8 goto label1;
-
-        if $i0 == 9 goto label6;
-
-        if $i0 == 10 goto label1;
-
-        if $i0 == 11 goto label2;
-
-     label6:
-        if $i0 == 12 goto label7;
-
-     label7:
-        if $i0 == 13 goto label0;
-
-        return;
-    }
-
-[Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.0 seconds.
-[Spark] Type masks in 0.0 seconds.
-[Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.4 seconds.
-[Spark] Solution found in 0.4 seconds.
-Running incremental callback analysis for 1 components...
-Incremental callback analysis done.
-Found 2 layout controls
-Found 4 callback methods for 1 components
-Entry point calculation done.
-Created a SourceSinkManager with 129 sources, 64 sinks, and 4 callback methods.
-Running data flow analysis...
-Running data flow analysis on /home/diego/didfail/toyapps/out/WriteFile.apk with 129 sources and 64 sinks...
-Starting infoflow computation...
-[main] INFO soot.jimple.infoflow.Infoflow - Resetting Soot...
-Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
-Warning: java.lang.ref.Finalizer is a phantom class!
-[main] INFO soot.jimple.infoflow.Infoflow - Basic class loading done.
-[main] ERROR soot.jimple.infoflow.Infoflow - Only phantom classes loaded, skipping analysis...
 Warning: android.hardware.display.DisplayManager is a phantom class!
 Warning: android.media.RemoteControlClient$OnGetPlaybackPositionListener is a phantom class!
 Warning: android.media.RemoteControlClient$OnPlaybackPositionUpdateListener is a phantom class!
@@ -249,11 +150,110 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
     }
 
 [Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.0 seconds.
+[Spark] Pointer Assignment Graph in 0.1 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.3 seconds.
-[Spark] Solution found in 0.3 seconds.
+[Spark] Propagation in 1.9 seconds.
+[Spark] Solution found in 1.9 seconds.
+Running incremental callback analysis for 1 components...
+Incremental callback analysis done.
+Found 2 layout controls
+Found 4 callback methods for 1 components
+Entry point calculation done.
+Created a SourceSinkManager with 129 sources, 64 sinks, and 4 callback methods.
+Running data flow analysis...
+Running data flow analysis on /home/diego/security_android/toyapps/out/WriteFile.apk with 129 sources and 64 sinks...
+Starting infoflow computation...
+[main] INFO soot.jimple.infoflow.Infoflow - Resetting Soot...
+Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
+Warning: java.lang.ref.Finalizer is a phantom class!
+[main] INFO soot.jimple.infoflow.Infoflow - Basic class loading done.
+[main] ERROR soot.jimple.infoflow.Infoflow - Only phantom classes loaded, skipping analysis...
+Warning: android.hardware.display.DisplayManager is a phantom class!
+Warning: android.media.RemoteControlClient$OnGetPlaybackPositionListener is a phantom class!
+Warning: android.media.RemoteControlClient$OnPlaybackPositionUpdateListener is a phantom class!
+Warning: android.view.ViewTreeObserver$OnWindowAttachListener is a phantom class!
+Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom class!
+[main] WARN soot.jimple.infoflow.entryPointCreators.AndroidEntryPointCreator - Cannot create valid constructor for android.view.Menu, because it is an interface and cannot substitute with subclass
+[main] INFO soot.jimple.infoflow.entryPointCreators.AndroidEntryPointCreator - Generated main method:
+    public static void dummyMainMethod()
+    {
+        int $i0;
+        org.cert.WriteFile.MainActivity $r0;
+        android.os.Bundle $r1;
+        android.content.Intent $r2;
+        boolean $z0;
+        org.cert.WriteFile.Button1Listener $r3;
+        android.view.View $r4;
+
+        $i0 = 0;
+
+     label0:
+        if $i0 == 0 goto label7;
+
+        $r0 = new org.cert.WriteFile.MainActivity;
+        specialinvoke $r0.<org.cert.WriteFile.MainActivity: void <init>()>();
+        if $i0 == 1 goto label7;
+
+     label1:
+        $r1 = new android.os.Bundle;
+        specialinvoke $r1.<android.os.Bundle: void <init>()>();
+        virtualinvoke $r0.<org.cert.WriteFile.MainActivity: void onCreate(android.os.Bundle)>($r1);
+        $r1 = null;
+
+     label2:
+        if $i0 == 2 goto label3;
+
+        $r2 = new android.content.Intent;
+        specialinvoke $r2.<android.content.Intent: void <init>()>();
+        virtualinvoke $r0.<org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>(0, 0, $r2);
+        $r2 = null;
+
+     label3:
+        if $i0 == 3 goto label4;
+
+        $z0 = virtualinvoke $r0.<org.cert.WriteFile.MainActivity: boolean onCreateOptionsMenu(android.view.Menu)>(null);
+
+     label4:
+        $r3 = new org.cert.WriteFile.Button1Listener;
+        specialinvoke $r3.<org.cert.WriteFile.Button1Listener: void <init>(org.cert.WriteFile.MainActivity)>($r0);
+        if $i0 == 4 goto label5;
+
+        $r4 = new android.view.View;
+        specialinvoke $r4.<android.view.View: void <init>(android.content.Context)>($r0);
+        virtualinvoke $r3.<org.cert.WriteFile.Button1Listener: void onClick(android.view.View)>($r4);
+        $r4 = null;
+
+     label5:
+        if $i0 == 5 goto label2;
+
+        if $i0 == 6 goto label2;
+
+        if $i0 == 7 goto label2;
+
+        if $i0 == 8 goto label1;
+
+        if $i0 == 9 goto label6;
+
+        if $i0 == 10 goto label1;
+
+        if $i0 == 11 goto label2;
+
+     label6:
+        if $i0 == 12 goto label7;
+
+     label7:
+        if $i0 == 13 goto label0;
+
+        return;
+    }
+
+[Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
+[Spark] Pointer Assignment Graph in 0.1 seconds.
+[Spark] Type masks in 0.0 seconds.
+[Spark] Pointer Graph simplified in 0.0 seconds.
+[Spark] Propagation in 1.6 seconds.
+[Spark] Solution found in 1.6 seconds.
 [main] INFO soot.jimple.infoflow.Infoflow - Callgraph has 131 edges
 [main] INFO soot.jimple.infoflow.Infoflow - Looking for sources and sinks...
 [main] INFO soot.jimple.infoflow.Infoflow - Source found: $r1 := @parameter0: android.view.View
@@ -291,29 +291,12 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 3
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 4
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 5
-[main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2) in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret") in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2)
-[main] INFO soot.jimple.infoflow.Infoflow - - $r1 := @parameter2: android.content.Intent in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 := @parameter2: android.content.Intent
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2)
-[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() on line 42 in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2)
 [main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Phase2_3: ", $r3) in method <org.cert.WriteFile.Button1Listener: void onClick(android.view.View)> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps") in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
+[main] INFO soot.jimple.infoflow.Infoflow - - $d0 = virtualinvoke $r5.<android.location.Location: double getLongitude()>() on line 35 in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d1)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d0 = virtualinvoke $r5.<android.location.Location: double getLongitude()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d0)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
@@ -329,6 +312,34 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Phase2_3: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps") in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d1)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Phase2_3: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2) in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)> was called with values from the following sources:
+[main] INFO soot.jimple.infoflow.Infoflow - - $r1 := @parameter2: android.content.Intent in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 := @parameter2: android.content.Intent
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() on line 42 in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret") in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("sinkFile.txt", $r2)
+[main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0) in method <org.cert.WriteFile.Button1Listener: void onClick(android.view.View)> was called with values from the following sources:
 [main] INFO soot.jimple.infoflow.Infoflow - - $d0 = virtualinvoke $r5.<android.location.Location: double getLongitude()>() on line 35 in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d0 = virtualinvoke $r5.<android.location.Location: double getLongitude()>()
@@ -336,15 +347,28 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Phase2_3: ", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r4.<java.io.FileOutputStream: void write(byte[])>($r5) in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret") in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("secret", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0)
+[main] INFO soot.jimple.infoflow.Infoflow - - $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>() on line 36 in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r2.<java.lang.String: byte[] getBytes()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r4.<java.io.FileOutputStream: void write(byte[])>($r5)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d1)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("secret", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps") in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d1)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("secret", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0)
+[main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r4.<java.io.FileOutputStream: void write(byte[])>($r5) in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)> was called with values from the following sources:
 [main] INFO soot.jimple.infoflow.Infoflow - - $r1 := @parameter2: android.content.Intent in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 := @parameter2: android.content.Intent
@@ -358,35 +382,11 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r2.<java.lang.String: byte[] getBytes()>()
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r4.<java.io.FileOutputStream: void write(byte[])>($r5)
-[main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0) in method <org.cert.WriteFile.Button1Listener: void onClick(android.view.View)> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps") in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
+[main] INFO soot.jimple.infoflow.Infoflow - - $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret") in method <org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d1)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("secret", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0)
-[main] INFO soot.jimple.infoflow.Infoflow - - $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>() on line 36 in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d1 = virtualinvoke $r5.<android.location.Location: double getLatitude()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d1)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("secret", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0)
-[main] INFO soot.jimple.infoflow.Infoflow - - $d0 = virtualinvoke $r5.<android.location.Location: double getLongitude()>() on line 35 in method <org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $d0 = virtualinvoke $r5.<android.location.Location: double getLongitude()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(double)>($d0)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> return $r9
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("secret", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r5.<org.cert.WriteFile.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r2.<java.lang.String: byte[] getBytes()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r4.<java.io.FileOutputStream: void write(byte[])>($r5)
 <?xml version="1.0" encoding="UTF-8"?>
 <results package="org.cert.WriteFile">
 <flow>
@@ -438,4 +438,4 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 </source>
 </flow>
 </results>
-Analysis has run for 10.512973829 seconds
+Analysis has run for 38.168408091 seconds

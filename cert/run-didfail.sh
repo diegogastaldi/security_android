@@ -33,14 +33,21 @@ if [ ! -d "$outdir/log" ]; then mkdir "$outdir/log"; fi
 
 ulimit -v $max_mem 
 
+function process-apps() {
+    echo "Processing $apk_file"
+    $script_path/run-transformer.sh $outdir $apk_file 
+    if [ $? -ne 0 ]; then continue; fi
+    $script_path/run-epicc.sh $outdir $apk_file
+    $script_path/run-flowdroid.sh $outdir $apk_file 
+}
+
+pids=""
 for apk_file in $@ 
 do
-    echo Processing $apk_file
-    $script_path/run-transformer.sh $outdir $apk_file 
-    if [ $? -ne 0 ]; then continue; fi 
-    $script_path/run-epicc.sh $outdir $apk_file 
-    $script_path/run-flowdroid.sh $outdir $apk_file 
+    process-apps &
+    pids="$pids $!"
 done
+wait $pids
 
 orig_wd=`pwd` 
 cd $outdir 

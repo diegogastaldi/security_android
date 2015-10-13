@@ -53,7 +53,7 @@ def pop():
     ilist[inq] = False
     return inq
 
-# inserta a inequality at the front of ns, updating inserted field (if inserted is true, insert does nothing)
+# inserts a inequality at the front of ns, updating inserted field (if inserted is true, insert does nothing)
 def insert(i):
     if ilist[i] == False:
         ilist[i] = True

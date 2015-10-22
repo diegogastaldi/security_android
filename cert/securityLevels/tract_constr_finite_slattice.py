@@ -17,9 +17,11 @@ p = {} # dict('var', 'level')
 # inequalities with a variable to right
 c_var = set()
 
+exceptions = set()
+
 def check(inequality, order):
-    left = inequality[0]
-    right = inequality[1] 
+    left = inequality[0][1]
+    right = inequality[1][1] 
     if left in order.get_vars():
         level_left = p[left]
     else:
@@ -28,7 +30,10 @@ def check(inequality, order):
         level_right = p[right]
     else:
         level_right = right
-    return (level_left, level_right) in order.get_relations()
+    pprint("check")
+    pprint(inequality[0][0])
+    pprint(inequality[1][0])
+    return (((level_left, level_right) in order.get_relations()) or ((inequality[0][0], inequality[1][0]) in exceptions))
 
 def initialize(inequalities, order):
     bottom = order.bottom()
@@ -37,11 +42,11 @@ def initialize(inequalities, order):
         clist[var] = set()
     for inequality in inequalities:
         ilist[inequality] = False
-        if (inequality[1] in order.get_vars()):
+        if (inequality[1][1] in order.get_vars()):
             c_var.add(inequality)
-            clist[inequality[1]].add(inequality)
-        if (inequality[0] in order.get_vars()):
-            clist[inequality[0]].add(inequality)
+            clist[inequality[1][1]].add(inequality)
+        if (inequality[0][1] in order.get_vars()):
+            clist[inequality[0][1]].add(inequality)
     for inequality in c_var:
         if not check(inequality, order):
             ns.add(inequality)
@@ -65,12 +70,12 @@ def drop(i):
         ilist[i] = False
         ns.remove(i)
 
-def tract_const_finite_semilattice(inequalities, order):
+def tract_const_finite_semilattice(inequalities, order, exceptions):
     initialize(inequalities, order)
     while len(ns):
         (t, b) = pop()
-        p[b] = order.supremum(set([t, p[b]]))
-        for inequality in clist[b]:
+        p[b[1]] = order.supremum(set([t[1], p[b[1]]]))
+        for inequality in clist[b[1]]:
             if not check(inequality, order):
                 insert(inequality)
             else:

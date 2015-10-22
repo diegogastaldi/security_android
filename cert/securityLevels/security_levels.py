@@ -9,6 +9,7 @@ import os
 
 file_assign_levels = os.path.abspath("assign-levels.txt").replace("toyapps/out", "cert/securityLevels")
 file_security_levels = os.path.abspath("security-levels.txt").replace("toyapps/out", "cert/securityLevels")
+file_exceptions = os.path.abspath("exceptions.txt").replace("toyapps/out", "cert/securityLevels")
 
 def die(text): 
     sys.stderr.write(text + "\n")
@@ -21,6 +22,7 @@ class Check_levels(object):
         self._parse_security_levels()
         if from_file:
             self._parse_assign_levels()
+        self._parse_exceptions()
 
     def get_levels_order(self):
         return self._order.get_levels()
@@ -42,19 +44,22 @@ class Check_levels(object):
             return var
         die(string + " contain a unknown level") 
         
-    def show_security_levels(self, sl, im):
+    def show_security_levels(self, sl, i):
         if (sl["correct"] == True):
             return "Applications don't have security problems. \n Assigned security levels are: \n" + str(sl ["p"])
         else:
             string = "Applications have security problems. \n The methods are: \n"
-            while len(im):
-                tm = im.pop()
-                string = string + str(tm) + "\n"
+            while len(i):
+                dm = i.pop()
+                string = string + "\n"
+                string = string + "Src:\n"
+                string = string + "  " + str((dm[0])[0]) + ": " + str((dm[0])[1]) + "\n"
+                string = string + "Sink:\n"
+                string = string + "  " + str((dm[1])[0]) + ": " + str((dm[0])[1]) + "\n"
             return string
 
     def check_levels(self, flows):
-        inequalities_levels = list()
-        inequalities_methods = list()
+        inequalities = list()
         # Each element is a sink with its possible sources
         for flow in flows["Taints"]: 
             if (flow.startswith("Sink") or flow.startswith("Intent") or flow.startswith("Src")):
@@ -63,18 +68,25 @@ class Check_levels(object):
             else:
                 die("Unknown Type of Sink: " + flow)
             for src in flows["Taints"][flow]: 
-                if (src.startswith("Src")):
-                    current_src_level = self._get_level(src, False)
-                    current_src_method = src
-                    t_l = (current_src_level, current_sink_level)
-                    inequalities_levels.append(t_l)
-                    t_m = (current_src_method, current_sink_method)
-                    inequalities_methods.append(t_m)                    
+                if (src.startswith("Src")): 
+                    current_src = (src.split("Src: ")[1].split("',")[0], self._get_level(src, False))
+                    if (current_sink_method.startswith("Intent")):
+                        current_sink = (current_sink_method, current_sink_level)
+                    else:
+                        if (current_sink_method.startswith("Sink")):    
+                            current_sink = (current_sink_method.split("Sink: ")[1].split("',")[0], current_sink_level)
+                        else:
+                            current_sink = (current_sink_method.split("Src: ")[1].split("',")[0], current_sink_level)                    
+                    
+                    tupl = (current_src, current_sink)
+                    inequalities.append(tupl)                    
                 else:
                     die("Unknown Type of Src: " + src)                    
         #Parameters to algorithm
-        result = tract_const_finite_semilattice(inequalities_levels, self._order)
-        return self.show_security_levels(result, inequalities_methods)
+        pprint("inequalities")
+        pprint(inequalities)        
+        result = tract_const_finite_semilattice(inequalities, self._order, self._exceptions)
+        return self.show_security_levels(result, inequalities)
     
     def _clean_line(self, line):
         return re.sub(r'\s+', '', line)
@@ -110,12 +122,31 @@ class Check_levels(object):
                 continue
             if (line.count("->") != 1):
                 file_ptr.close()
-                self.die(file_security_levels + ": each line must have a ->")   
+                self.die(file_assign_levels + ": each line must have a ->")   
             line = self._clean_line(line)
             current_method = line.split("->")
             levels_tuple = current_method[0], current_method[1]
             
             self._order.add_methods(levels_tuple)
+
+    def _parse_exceptions(self):
+        self._exceptions = set()
+        try:
+            file_ptr = open(file_exceptions, 'r')
+        except IOError, e:
+            self.die(str(e))
+    
+        for line in file_ptr:
+            if line.startswith("#"):
+                continue
+            if (line.count("->") != 1):
+                file_ptr.close()
+                self.die(file_exceptions + ": each line must have a ->")   
+            line = self._clean_line(line)
+            current_method = line.split("->")
+            
+            self.exceptions.add(current_method)
+
 
     def selection_assign_levels(self, tuples): 
         for t in tuples:

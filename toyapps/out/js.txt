@@ -1,0 +1,8 @@
+Applications don't have security problems. 
+ Assigned security levels are: 
+  {'newField_6': 'Private'
+  'WRITE_EXTERNAL_STORAGE': 'Public'
+  'SEND_SMS': 'Public'
+  'newField_8': 'Public'
+  'BUNDLE': 'Public'
+  'ACCESS_FINE_LOCATION': 'Public'}

@@ -1,6 +1,7 @@
 #!/usr/bin/python2
 from collections import *
 from pprint import pprint
+import re
 
 # Inequalities
 ilist = {} # dict('inequality', inserted)
@@ -17,25 +18,28 @@ p = {} # dict('var', 'level')
 # inequalities with a variable to right
 c_var = set()
 
-exceptions = set()
+def clean_line(line):
+    return re.sub(r'\s+', '', line)
 
-def check(inequality, order):
+def check(inequality, order, exceptions):
     left = inequality[0][1]
-    right = inequality[1][1] 
+    right = inequality[1][1]
+
     if left in order.get_vars():
         level_left = p[left]
     else:
-        level_left = left
+        level_left = inequality[0][1]
     if right in order.get_vars():
         level_right = p[right]
     else:
-        level_right = right
-    pprint("check")
-    pprint(inequality[0][0])
-    pprint(inequality[1][0])
-    return (((level_left, level_right) in order.get_relations()) or ((inequality[0][0], inequality[1][0]) in exceptions))
+        level_right = inequality[1][1]
+    pprint("exceptions")
+    pprint(exceptions)
+    pprint("Current")
+    pprint((clean_line(inequality[0][0]), clean_line(inequality[1][0])))
+    return (((level_left, level_right) in order.get_relations()) or ((clean_line(inequality[0][0]), clean_line(inequality[1][0])) in exceptions))
 
-def initialize(inequalities, order):
+def initialize(inequalities, order, exceptions):
     bottom = order.bottom()
     for var in order.get_vars():
         p[var] = bottom
@@ -48,7 +52,7 @@ def initialize(inequalities, order):
         if (inequality[0][1] in order.get_vars()):
             clist[inequality[0][1]].add(inequality)
     for inequality in c_var:
-        if not check(inequality, order):
+        if not check(inequality, order, exceptions):
             ns.add(inequality)
             ilist[inequality] = True
 
@@ -71,19 +75,20 @@ def drop(i):
         ns.remove(i)
 
 def tract_const_finite_semilattice(inequalities, order, exceptions):
-    initialize(inequalities, order)
+    initialize(inequalities, order, exceptions)
     while len(ns):
         (t, b) = pop()
         p[b[1]] = order.supremum(set([t[1], p[b[1]]]))
         for inequality in clist[b[1]]:
-            if not check(inequality, order):
+            if not check(inequality, order, exceptions):
                 insert(inequality)
             else:
                 drop(inequality)
     out = {}
     for inequality in ilist:
-        if not check(inequality, order):
+        if not check(inequality, order, exceptions):
             out ["correct"] = False
+            out ["p"] = inequality
             return out
     out ["correct"] = True
     out ["p"] = p

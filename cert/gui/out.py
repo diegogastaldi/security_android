@@ -18,7 +18,7 @@ class MyDialog(wx.Dialog):
         self.label_1 = wx.StaticText(self, wx.ID_ANY, _(security_probl))
         self.button_1 = wx.Button(self, wx.ID_ANY, _("Ok"))
         self.button_1.Bind(wx.EVT_BUTTON, self.OnOk)
-        
+        self.Bind(wx.EVT_CLOSE, self.OnOk) 
         self.__set_properties()
         self.__do_layout()
 

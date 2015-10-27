@@ -44,19 +44,15 @@ class Check_levels(object):
             return var
         die(string + " contain a unknown level") 
         
-    def show_security_levels(self, sl, i):
+    def show_security_levels(self, sl):
         if (sl["correct"] == True):
-            return "Applications don't have security problems. \n Assigned security levels are: \n" + str(sl ["p"])
+            string = "Applications don't have security problems. \n Assigned security levels are: \n"
         else:
             string = "Applications have security problems. \n The methods are: \n"
-            while len(i):
-                dm = i.pop()
-                string = string + "\n"
-                string = string + "Src:\n"
-                string = string + "  " + str((dm[0])[0]) + ": " + str((dm[0])[1]) + "\n"
-                string = string + "Sink:\n"
-                string = string + "  " + str((dm[1])[0]) + ": " + str((dm[0])[1]) + "\n"
-            return string
+        res = str(sl ["p"]).split(", ")
+        for x in xrange(0,len(res)):
+            string = string + "  " + res[x] + "\n"
+        return string
 
     def check_levels(self, flows):
         inequalities = list()
@@ -82,11 +78,8 @@ class Check_levels(object):
                     inequalities.append(tupl)                    
                 else:
                     die("Unknown Type of Src: " + src)                    
-        #Parameters to algorithm
-        pprint("inequalities")
-        pprint(inequalities)        
         result = tract_const_finite_semilattice(inequalities, self._order, self._exceptions)
-        return self.show_security_levels(result, inequalities)
+        return self.show_security_levels(result)
     
     def _clean_line(self, line):
         return re.sub(r'\s+', '', line)
@@ -144,9 +137,8 @@ class Check_levels(object):
                 self.die(file_exceptions + ": each line must have a ->")   
             line = self._clean_line(line)
             current_method = line.split("->")
-            
-            self.exceptions.add(current_method)
-
+            exc_tuple = current_method[0], current_method[1]
+            self._exceptions.add(exc_tuple)
 
     def selection_assign_levels(self, tuples): 
         for t in tuples:

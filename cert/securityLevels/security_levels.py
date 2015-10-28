@@ -19,7 +19,8 @@ class Check_levels(object):
     _order = Partial_order()
 
     def __init__(self, from_file = True):
-        self._parse_security_levels()
+        if (not self._parse_security_levels()):
+            die("The order in " + file_security_levels + " is not a partial order")
         if from_file:
             self._parse_assign_levels()
         self._parse_exceptions()
@@ -102,8 +103,7 @@ class Check_levels(object):
 
             relations.add(levels_tuple)
         file_ptr.close()
-        self._order.add_relations(relations)
-        return True;
+        return self._order.add_relations(relations)
 
     def _parse_assign_levels(self): 
         try:

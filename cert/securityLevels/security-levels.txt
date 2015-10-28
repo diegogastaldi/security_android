@@ -32,4 +32,4 @@ Semi-private3 <= Private
 # Semi-private1 <= Semi-private1
 # Semi-private2 <= Semi-private2
 # Semi-private3 <= Semi-private3
-# Private <= Private
+# Private <= Public

@@ -29,23 +29,32 @@ class Partial_order(object):
             if closure_until_now == closure:
                 break
             closure = closure_until_now
-        self._relations = closure.copy()
+        return closure.copy()
 
     def _reflexive_closure(self):
         for l in self._levels:
             new_rel = (l, l)
             self._relations.add(new_rel)
 
+    def _check_antisymmetry(self, relations):
+        for r1 in relations:
+            for r2 in relations:
+                if (r1[0] == r2[1] and r1[1] == r2[0] and r1[0] != r1[1]):
+                    return False
+        return True
+
     def add_relations(self, relations):
-        pprint("antes")
-        pprint(relations)
-        for r in relations:
-            self.add_level(r[0])
-            self.add_level(r[1])
-        self._transitive_closure(relations)
-        self._reflexive_closure()
-        pprint("despes")
-        pprint(self)
+        new_rel = self._transitive_closure(relations)
+        if self._check_antisymmetry(new_rel):
+            for r in relations:
+                self.add_level(r[0])
+                self.add_level(r[1])
+            # Partial Order
+            self._relations = new_rel
+            self._reflexive_closure()
+            return True
+        else:
+            return False  
 
     def get_relations(self):
         return self._relations

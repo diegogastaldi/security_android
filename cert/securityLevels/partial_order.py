@@ -20,11 +20,32 @@ class Partial_order(object):
 
     def get_levels(self):
         return self._levels
+   
+    def _transitive_closure(self, relations):
+        closure = relations | self._relations
+        while True:
+            new_relations = set((x,w) for x, y in closure for q,w in closure if q == y)
+            closure_until_now = closure | new_relations
+            if closure_until_now == closure:
+                break
+            closure = closure_until_now
+        self._relations = closure.copy()
 
-    def add_relation(self, relation):
-        self._relations.add(relation)
-        self.add_level(relation[0])
-        self.add_level(relation[1])
+    def _reflexive_closure(self):
+        for l in self._levels:
+            new_rel = (l, l)
+            self._relations.add(new_rel)
+
+    def add_relations(self, relations):
+        pprint("antes")
+        pprint(relations)
+        for r in relations:
+            self.add_level(r[0])
+            self.add_level(r[1])
+        self._transitive_closure(relations)
+        self._reflexive_closure()
+        pprint("despes")
+        pprint(self)
 
     def get_relations(self):
         return self._relations

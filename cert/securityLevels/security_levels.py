@@ -89,7 +89,7 @@ class Check_levels(object):
             file_ptr = open(file_security_levels, 'r')
         except IOError, e:
             self.die(str(e))
-    
+        relations = set()
         for line in file_ptr:
             if line.startswith("#"):
                 continue
@@ -100,8 +100,9 @@ class Check_levels(object):
             current_levels = line.split("<=")
             levels_tuple = current_levels[0], current_levels[1]
 
-            self._order.add_relation(levels_tuple)
+            relations.add(levels_tuple)
         file_ptr.close()
+        self._order.add_relations(relations)
         return True;
 
     def _parse_assign_levels(self): 

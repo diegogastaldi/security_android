@@ -22,22 +22,21 @@ def clean_line(line):
     return re.sub(r'\s+', '', line)
 
 def check(inequality, order, exceptions):
-    left = inequality[0][1]
-    right = inequality[1][1]
+    src = inequality[0][1]
+    sink = inequality[1][1]
 
-    if left in order.get_vars():
-        level_left = p[left]
+    if src in order.get_vars():
+        level_src = p[src]
     else:
-        level_left = inequality[0][1]
-    if right in order.get_vars():
-        level_right = p[right]
+        level_src = inequality[0][1]
+    if sink in order.get_vars():
+        level_sink = p[sink]
+        const_sink = False
     else:
-        level_right = inequality[1][1]
-    pprint("exceptions")
-    pprint(exceptions)
-    pprint("Current")
-    pprint((clean_line(inequality[0][0]), clean_line(inequality[1][0])))
-    return (((level_left, level_right) in order.get_relations()) or ((clean_line(inequality[0][0]), clean_line(inequality[1][0])) in exceptions))
+        level_sink = inequality[1][1]
+        const_sink = True
+
+    return (((level_src, level_sink) in order.get_relations()) or (const_sink and ((clean_line(inequality[0][0]), clean_line(inequality[1][0])) in exceptions)))
 
 def initialize(inequalities, order, exceptions):
     bottom = order.bottom()

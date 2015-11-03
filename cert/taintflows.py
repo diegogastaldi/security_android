@@ -489,9 +489,6 @@ def main():
                 cl_out = open(cl_out_filename, "w") # Writes the Flows and taint solution in JSON format
             elif arg == "--check_levels_gui": # Added
                 cl_out_from_file = False
-                cl_out_filename = "js.txt"
-                cl_out = open(cl_out_filename, "w") # Writes the Flows and taint solution in JSON format
-
             else:
                 all_filenames.append(arg)
         except StopIteration:
@@ -655,7 +652,10 @@ def main():
             cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
             security_probl = check_levels.check_levels(cl_dict)
             cl_out.write(security_probl)
-            out_window(security_probl)
+            if tuples != None:
+                out_window(security_probl)
+            else:
+                cl_out.write(security_probl)
         if cl_out_from_file:
             analize_leves(None) 
         else:

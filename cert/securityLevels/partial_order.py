@@ -63,7 +63,8 @@ class Partial_order(object):
         if not (method[1] in self._levels):
             die(str(method[1]) + ": is an unknown level in add_methods") 
         self._level_method.add(method)
-        self._vars.remove(method[0])
+        if (method[0] in self._vars):
+            self._vars.remove(method[0])
 
     def add_var(self, var):
         for current_method in self._level_method:

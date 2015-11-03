@@ -51,5 +51,5 @@ wait $pids
 
 orig_wd=`pwd` 
 cd $outdir 
-$python -t -t $script_path/taintflows.py --check_levels_gui $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out 
+$python -t -t $script_path/taintflows.py --check_levels_file "js.txt" $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out 
 cd $orig_wd

@@ -618,10 +618,10 @@ def main():
         else:
             assert(0)
             return obj
-    if not cl_out:
+    if cl_out_from_file:
         analize()
     else:
-        def main_window(levels, entities, analize_leves):
+        def main_window(levels, entities, analize_leves, add_exception):
             import gettext
             import wx
             gettext.install("app") 
@@ -629,7 +629,7 @@ def main():
             app = wx.PySimpleApp(0)
             wx.InitAllImageHandlers()
             frame_1 = MyFrame(None, wx.ID_ANY, "")
-            frame_1.create(levels, entities, analize_leves)
+            frame_1.create(levels, entities, analize_leves, add_exception)
             app.SetTopWindow(frame_1)
             frame_1.Show()
             app.MainLoop()
@@ -642,7 +642,7 @@ def main():
             dialog_1.create(security_probl)
 
             dialog_1.Show()
-
+        
         def analize_leves(tuples):
             if tuples != None: 
                 check_levels.selection_assign_levels(tuples)
@@ -651,7 +651,7 @@ def main():
             cl_dict = stringize_intents({'Taints': sol_src})
             cl_str = json.dumps(cl_dict, sort_keys=True, indent=4, separators=(',', ': '))
             security_probl = check_levels.check_levels(cl_dict)
-            cl_out.write(security_probl)
+            
             if tuples != None:
                 out_window(security_probl)
             else:
@@ -659,7 +659,6 @@ def main():
         if cl_out_from_file:
             analize_leves(None) 
         else:
-            main_window(check_levels.get_levels_order(), check_levels.get_vars_order(), analize_leves)
+            main_window(check_levels.get_levels_order(), check_levels.get_vars_order(), analize_leves, check_levels.add_exception)
 
 main()
-

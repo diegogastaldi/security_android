@@ -17,14 +17,13 @@ def die(text):
 
 class Check_levels(object):
     _order = Partial_order()
-    _exceptions = set()
 
     def __init__(self, from_file = True):
         if (not self._parse_security_levels()):
             die("The order in " + file_security_levels + " is not a partial order")
         if from_file:
             self._parse_assign_levels()
-            self._parse_exceptions()
+        self._parse_exceptions()
 
     def get_levels_order(self):
         return self._order.get_levels()
@@ -90,7 +89,7 @@ class Check_levels(object):
         try:
             file_ptr = open(file_security_levels, 'r')
         except IOError, e:
-            die(str(e))
+            self.die(str(e))
         relations = set()
         for line in file_ptr:
             if line.startswith("#"):
@@ -125,26 +124,22 @@ class Check_levels(object):
             self._order.add_methods(levels_tuple)
 
     def _parse_exceptions(self):
+        self._exceptions = set()
         try:
             file_ptr = open(file_exceptions, 'r')
         except IOError, e:
-            die(str(e))
+            self.die(str(e))
     
         for line in file_ptr:
             if line.startswith("#"):
                 continue
             if (line.count("->") != 1):
                 file_ptr.close()
-                die(file_exceptions + ": each line must have a ->")   
+                self.die(file_exceptions + ": each line must have a ->")   
             line = self._clean_line(line)
             current_method = line.split("->")
             exc_tuple = current_method[0], current_method[1]
             self._exceptions.add(exc_tuple)
-
-    def add_exception(self, exc):
-        exc_tuple = self._clean_line(exc[0]), self._clean_line(exc[1])
-        self._exceptions.add(exc_tuple)
-
 
     def selection_assign_levels(self, tuples): 
         for t in tuples:

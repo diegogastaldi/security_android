@@ -105,7 +105,7 @@ class MyFrame(wx.Frame):
 
 class ChildFrame(wx.Frame):
     def __init__(self, parent):
-        wx.Frame.__init__(self, None, size=(150,100), title='ChildFrame')
+        wx.Frame.__init__(self, None, title='ChildFrame')
         self.parent = parent
         pan = wx.Panel(self)
 
@@ -144,5 +144,11 @@ class ChildFrame(wx.Frame):
 
     def OnAdd(self, event):
         exc_tuple = self.text_ctrl_3.GetValue(), self.text_ctrl_4.GetValue()
-        self.parent.add_exc(exc_tuple)
-        self.Destroy()
+        if self.parent.add_exc(exc_tuple) and (exc_tuple[0] != "") and (exc_tuple[1] != ""):
+            self.Destroy()
+        else:
+            dlg = wx.MessageDialog(self, "Method in exception not found","Error", wx.OK|wx.ICON_ERROR)
+            result = dlg.ShowModal()
+            dlg.Destroy()
+            if result == wx.ID_OK:
+                self.Destroy()

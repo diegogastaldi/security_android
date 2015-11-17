@@ -26,5 +26,5 @@ ulimit -v $max_mem # modified
 
 orig_wd=`pwd`
 cd $outdir
-$python -t -t $script_path/taintflows.py --check_levels_file $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out
+$python -t -t $script_path/taintflows.py --check_levels_file "js.txt" $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out
 cd $orig_wd

@@ -6,6 +6,7 @@ import traceback
 from pprint import pprint
 import re
 import os
+from securityLevels.permissions.permissions import *
 
 file_assign_levels = os.path.abspath("assign-levels.txt").replace("toyapps/out", "cert/securityLevels")
 file_security_levels = os.path.abspath("security-levels.txt").replace("toyapps/out", "cert/securityLevels")
@@ -138,13 +139,19 @@ class Check_levels(object):
                 die(file_exceptions + ": each line must have a ->")   
             line = self._clean_line(line)
             current_method = line.split("->")
-            exc_tuple = current_method[0], current_method[1]
-            self._exceptions.add(exc_tuple)
+            if ((get_category_permission(current_method[0]) != current_method[0]) and (get_category_permission(current_method[1]) != current_method[1])):
+                exc_tuple = current_method[0], current_method[1]
+                self._exceptions.add(exc_tuple)
+            else: 
+                pprint("Methods in the exceptions not found. Exceptions not added")
 
     def add_exception(self, exc):
         exc_tuple = self._clean_line(exc[0]), self._clean_line(exc[1])
-        self._exceptions.add(exc_tuple)
-
+        if ((get_category_permission(exc_tuple[0]) != exc_tuple[0]) and (get_category_permission(exc_tuple[1]) != exc_tuple[1])):
+            self._exceptions.add(exc_tuple)
+            return True
+        else:
+            return False
 
     def selection_assign_levels(self, tuples): 
         for t in tuples:

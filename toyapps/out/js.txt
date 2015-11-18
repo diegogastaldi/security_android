@@ -1,0 +1,6 @@
+Applications have security problems. 
+ The methods are: 
+  (('<android.location.Location: double getLatitude()>'
+  'Private')
+  ('<android.util.Log: int i(java.lang.String,java.lang.String)>'
+  'Public'))

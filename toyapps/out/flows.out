@@ -1,42 +1,116 @@
-Changed: OrderedSet([Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public'), Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='SEND_SMS'), Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='WRITE_EXTERNAL_STORAGE'), Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')])
+Changed: OrderedSet([Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG'), Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='SEND_SMS'), Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='WRITE_EXTERNAL_STORAGE'), Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')])
 Changed: OrderedSet()
 ---- Flows with 0 intent(s) ---------------------------------
-[Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'), app='org.cert.echoer', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private'), app='org.cert.sendsms', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
+[Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'), app='org.cert.echoer', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
+ Flow(src=Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1'), app='org.cert.sendsms', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
  Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'), app='org.cert.sendsms', sink=Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='SEND_SMS')),
- Flow(src=Src(src='Src: <android.location.Location: double getLongitude()>', level='Private'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.location.Location: double getLatitude()>', level='Private'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
+ Flow(src=Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
+ Flow(src=Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
+ Flow(src=Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
+ Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
  Flow(src=Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'), app='org.cert.WriteFile', sink=Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='WRITE_EXTERNAL_STORAGE'))]
 ---- Flows with 1 intent(s) ---------------------------------
-[Flow(src=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8'), app=None, sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), app=None, sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')),
- Flow(src=Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private'), app=None, sink=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6')),
- Flow(src=Src(src='Src: <android.location.Location: double getLongitude()>', level='Private'), app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')),
- Flow(src=Src(src='Src: <android.location.Location: double getLatitude()>', level='Private'), app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')),
- Flow(src=Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private'), app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8'))]
+[Flow(src=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8'), app=None, sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
+ Flow(src=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6'), app=None, sink=Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')),
+ Flow(src=Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1'), app=None, sink=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6')),
+ Flow(src=Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1'), app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')),
+ Flow(src=Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1'), app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')),
+ Flow(src=Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1'), app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8'))]
 ---- Flows with 2 intent(s) ---------------------------------
 []
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------
 ### 'Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')': ###
-[Src(src='Src: <android.location.Location: double getLongitude()>', level='Private'),
- Src(src='Src: <android.location.Location: double getLatitude()>', level='Private'),
- Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private')]
+[Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1'),
+ Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1'),
+ Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1')]
 ### 'Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6')': ###
-[Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private')]
+[Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1')]
 --------------------
 --------------------
-### 'Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='Public')': ###
-[Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'),
- Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Private'),
- Src(src='Src: <android.location.Location: double getLongitude()>', level='Private'),
- Src(src='Src: <android.location.Location: double getLatitude()>', level='Private'),
- Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Private')]
 ### 'Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='SEND_SMS')': ###
 [Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')]
 ### 'Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='WRITE_EXTERNAL_STORAGE')': ###
 [Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')]
+### 'Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')': ###
+[Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE'),
+ Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1'),
+ Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1'),
+ Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1'),
+ Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1')]
 --------------------
+'dict'
+{'Taints': {"Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')": ["Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1')",
+                                                                                                                                        "Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1')",
+                                                                                                                                        "Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1')"],
+            "Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6')": ["Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1')"],
+            "Sink(sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', level='SEND_SMS')": ["Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')"],
+            "Sink(sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', level='LOG')": ["Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')",
+                                                                                                             "Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1')",
+                                                                                                             "Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1')",
+                                                                                                             "Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1')",
+                                                                                                             "Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1')"],
+            "Sink(sink='Sink: <java.io.FileOutputStream: void write(byte[])>', level='WRITE_EXTERNAL_STORAGE')": ["Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')"],
+            "Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1')": ["Src(src='Src: <android.location.Location: double getLatitude()>', level='Semi-public1')"],
+            "Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1')": ["Src(src='Src: <android.location.Location: double getLongitude()>', level='Semi-public1')"],
+            "Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1')": ["Src(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', level='Semi-public1')"],
+            "Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')": ["Src(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', level='BUNDLE')"],
+            "Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1')": ["Src(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', level='Semi-private1')"]}}
+[(('<android.location.Location: double getLatitude()>', 'Semi-public1'),
+  ('<android.location.Location: double getLatitude()>', 'Semi-public1')),
+ (('<android.os.Bundle: java.lang.String getString(java.lang.String)>',
+   'BUNDLE'),
+  ('<android.util.Log: int i(java.lang.String,java.lang.String)>', 'LOG')),
+ (('<android.telephony.TelephonyManager: java.lang.String getDeviceId()>',
+   'Semi-private1'),
+  ('<android.util.Log: int i(java.lang.String,java.lang.String)>', 'LOG')),
+ (('<android.location.Location: double getLongitude()>', 'Semi-public1'),
+  ('<android.util.Log: int i(java.lang.String,java.lang.String)>', 'LOG')),
+ (('<android.location.Location: double getLatitude()>', 'Semi-public1'),
+  ('<android.util.Log: int i(java.lang.String,java.lang.String)>', 'LOG')),
+ (('<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>',
+   'Semi-public1'),
+  ('<android.util.Log: int i(java.lang.String,java.lang.String)>', 'LOG')),
+ (('<android.os.Bundle: java.lang.String getString(java.lang.String)>',
+   'BUNDLE'),
+  ('<android.os.Bundle: java.lang.String getString(java.lang.String)>',
+   'BUNDLE')),
+ (('<android.location.Location: double getLongitude()>', 'Semi-public1'),
+  ("Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')",
+   'newField_8')),
+ (('<android.location.Location: double getLatitude()>', 'Semi-public1'),
+  ("Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')",
+   'newField_8')),
+ (('<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>',
+   'Semi-public1'),
+  ("Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_8')",
+   'newField_8')),
+ (('<android.telephony.TelephonyManager: java.lang.String getDeviceId()>',
+   'Semi-private1'),
+  ("Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', 'org.cert.echoer.MainActivity'), intent_id='newField_6')",
+   'newField_6')),
+ (('<android.location.Location: double getLongitude()>', 'Semi-public1'),
+  ('<android.location.Location: double getLongitude()>', 'Semi-public1')),
+ (('<android.os.Bundle: java.lang.String getString(java.lang.String)>',
+   'BUNDLE'),
+  ('<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>',
+   'SEND_SMS')),
+ (('<android.os.Bundle: java.lang.String getString(java.lang.String)>',
+   'BUNDLE'),
+  ('<java.io.FileOutputStream: void write(byte[])>',
+   'WRITE_EXTERNAL_STORAGE')),
+ (('<android.telephony.TelephonyManager: java.lang.String getDeviceId()>',
+   'Semi-private1'),
+  ('<android.telephony.TelephonyManager: java.lang.String getDeviceId()>',
+   'Semi-private1')),
+ (('<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>',
+   'Semi-public1'),
+  ('<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>',
+   'Semi-public1'))]
+Partial Order: 
+ Levels: set(['Semi-public1', 'Semi-public2', 'Semi-public3', 'Private', 'Semi-private1', 'Semi-private3', 'Semi-private2', 'Public'])
+Relations: set([('Semi-private1', 'Semi-private1'), ('Semi-public3', 'Semi-private3'), ('Public', 'Semi-private1'), ('Semi-public2', 'Semi-public2'), ('Semi-public1', 'Private'), ('Semi-public2', 'Semi-private2'), ('Semi-private2', 'Private'), ('Private', 'Private'), ('Public', 'Semi-public2'), ('Public', 'Private'), ('Semi-private1', 'Private'), ('Public', 'Public'), ('Public', 'Semi-private3'), ('Semi-public3', 'Semi-public3'), ('Semi-private3', 'Semi-private3'), ('Semi-private2', 'Semi-private2'), ('Semi-private3', 'Private'), ('Public', 'Semi-public1'), ('Public', 'Semi-private2'), ('Semi-public1', 'Semi-private1'), ('Public', 'Semi-public3'), ('Semi-public2', 'Private'), ('Semi-public1', 'Semi-public1'), ('Semi-public3', 'Private')])
+Levels Methods: set([('READ_PHONE_STATE', 'Semi-private1'), ('ACCESS_FINE_LOCATION', 'Semi-public1')])
+Vars: set(['newField_6', 'LOG', 'SEND_SMS', 'newField_8', 'BUNDLE', 'WRITE_EXTERNAL_STORAGE'])
+

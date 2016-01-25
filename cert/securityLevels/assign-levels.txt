@@ -1,6 +1,9 @@
 # Format: method -> Security Level
 # where "Security Level" must be defined in security-levels.txt
-READ_PHONE_STATE -> Private
-ACCESS_FINE_LOCATION -> Private
-READ_PHONE_STATE -> Public
-LOG -> Public
+READ_PHONE_STATE -> Semi-private1
+ACCESS_FINE_LOCATION -> Semi-public1
+
+
+
+
+

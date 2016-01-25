@@ -31,12 +31,10 @@ def check(inequality, order, exceptions):
         level_src = inequality[0][1]
     if sink in order.get_vars():
         level_sink = p[sink]
-        const_sink = False
     else:
         level_sink = inequality[1][1]
-        const_sink = True
 
-    return (((level_src, level_sink) in order.get_relations()) or (const_sink and ((clean_line(inequality[0][0]), clean_line(inequality[1][0])) in exceptions)))
+    return (((level_src, level_sink) in order.get_relations()) or ((clean_line(inequality[0][0]), clean_line(inequality[1][0])) in exceptions))
 
 def initialize(inequalities, order, exceptions):
     bottom = order.bottom()

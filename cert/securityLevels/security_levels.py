@@ -39,9 +39,9 @@ class Check_levels(object):
             if (string.find("level='" + level + "'") != -1):
                 return level
         for var in self._order.get_vars():
-            if (string.find("level='" + var + "'") != -1):
+            if ((string.find("level='" + var + "'") != -1) or ((string.find("intent_id='" + var + "'") != -1))):
                 return var
-        if (is_sink and (string.find("intent_id")) != -1):
+        if (is_sink and ((string.find("intent_id")) != -1)):
             var = (string.split("intent_id='")[1]).split("'")[0]
             self._order.add_var(var)
             return var

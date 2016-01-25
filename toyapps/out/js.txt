@@ -1,6 +1,10 @@
-Applications have security problems. 
- The methods are: 
-  (('<android.location.Location: double getLatitude()>'
-  'Private')
-  ('<android.util.Log: int i(java.lang.String,java.lang.String)>'
-  'Public'))
+Applications don't have security problems. 
+ Assigned security levels are: 
+  {'newField_6': 'Semi-private1'
+  'WRITE_EXTERNAL_STORAGE': 'Public'
+  'SEND_SMS': 'Public'
+  'newField_8': 'Semi-public1'
+  'BUNDLE': 'Public'
+  'LOG': 'Semi-public1'}
+
+

@@ -7,7 +7,7 @@ import sys
 
 #The setUp() method runs before every test.
 #The tearDown() method runs after every test.
-#python -m unittest discover -s /home/diego/didfail/cert/securityLevels/ -p 'test.py'
+#python -m unittest discover -s ~/security_android/cert/securityLevels/ -p 'test.py'
 
 class Test_partial_order(unittest.TestCase):
     def setUp(self):

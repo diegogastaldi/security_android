@@ -1,15 +1,15 @@
-export didfail=~/didfail
-export epicc_dir=$didfail/epicc
-export dare_dir=$didfail/dare-1.1.0-linux
+export security_android=~/security_android
+export epicc_dir=$security_android/epicc
+export dare_dir=$security_android/dare-1.1.0-linux
 export dare=$dare_dir/dare
 
-export sdk_platforms=$didfail/platforms
+export sdk_platforms=$security_android/platforms
 export android_jar=$sdk_platforms/android-16/android.jar
 export rt_jar=/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar
 
-export wkspc=$didfail/workspace       # for FlowDroid
-export soot_base=$didfail/workspace   # for the APK transformer
-export cert_apk_transform_dir=$didfail/cert/transformApk
+export wkspc=$security_android/workspace       # for FlowDroid
+export soot_base=$security_android/workspace   # for the APK transformer
+export cert_apk_transform_dir=$security_android/cert/transformApk
 
 export jvm_flags="-Xmx512m -Xss16m"
 export max_mem=unlimited #2250000 Modificado para que ande

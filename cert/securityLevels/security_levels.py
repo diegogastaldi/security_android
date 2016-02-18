@@ -94,7 +94,7 @@ class Check_levels(object):
             die(str(e))
         relations = set()
         for line in file_ptr:
-            if line.startswith("#"):
+            if line.startswith("#") or line.startswith("\n"):
                 continue
             if (line.count("<=") != 1):
                 file_ptr.close()    
@@ -112,13 +112,12 @@ class Check_levels(object):
             file_ptr = open(file_assign_levels, 'r')
         except IOError, e:
             self.die(str(e))
-    
         for line in file_ptr:
-            if line.startswith("#"):
-                continue
+            if line.startswith("#") or line.startswith("\n"):
+                continue    
             if (line.count("->") != 1):
                 file_ptr.close()
-                self.die(file_assign_levels + ": each line must have a ->")   
+                die(file_assign_levels + ": each line must have a ->")   
             line = self._clean_line(line)
             current_method = line.split("->")
             levels_tuple = current_method[0], current_method[1]
@@ -132,8 +131,9 @@ class Check_levels(object):
             die(str(e))
     
         for line in file_ptr:
-            if line.startswith("#"):
+            if line.startswith("#") or line.startswith("\n"):
                 continue
+            pprint(line)
             if (line.count("->") != 1):
                 file_ptr.close()
                 die(file_exceptions + ": each line must have a ->")   

@@ -3,7 +3,3 @@
 READ_PHONE_STATE -> Semi-private1
 ACCESS_FINE_LOCATION -> Semi-public1
 
-
-
-
-

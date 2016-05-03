@@ -86,7 +86,7 @@ class Partial_order(object):
     def supremum(self, levels):
         for l in levels:
             if not (l in self._levels):
-                die("Supremum error")
+                die("Supremum error: " + str(l))
         greater_levels = {}
         # Greater for each level
         for level in levels:

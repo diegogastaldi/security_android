@@ -59,6 +59,10 @@ class Check_levels(object):
 
     def check_levels(self, flows):
         inequalities = list()
+        bundle_level = str()
+        bundle_str = "<android.os.Bundle: java.lang.String getString(java.lang.String)>"
+        bundle_srcs = set()
+
         # Each element is a sink with its possible sources
         for flow in flows["Taints"]: 
             if (flow.startswith("Sink") or flow.startswith("Intent") or flow.startswith("Src")):
@@ -69,8 +73,11 @@ class Check_levels(object):
             for src in flows["Taints"][flow]: 
                 if (src.startswith("Src")): 
                     current_src = (src.split("Src: ")[1].split("',")[0], self._get_level(src, False))
+                    if (current_src[0] == bundle_str):
+                        bundle_level = current_src[1]
                     if (current_sink_method.startswith("Intent")):
                         current_sink = (current_sink_method, current_sink_level)
+                        bundle_srcs.add(current_sink)
                     else:
                         if (current_sink_method.startswith("Sink")):    
                             current_sink = (current_sink_method.split("Sink: ")[1].split("',")[0], current_sink_level)
@@ -80,7 +87,15 @@ class Check_levels(object):
                     tupl = (current_src, current_sink)
                     inequalities.append(tupl)                    
                 else:
-                    die("Unknown Type of Src: " + src)                    
+                    die("Unknown Type of Src: " + src)      
+        bundle_sink = (bundle_str, bundle_level)
+        for src in bundle_srcs:
+            tupl = (src, bundle_sink)
+            pprint("---------1------------------------------")
+            pprint(tupl)
+            inequalities.append(tupl)
+            pprint("----------2-----------------------------")
+            pprint(inequalities)
         result = tract_const_finite_semilattice(inequalities, self._order, self._exceptions)
         return self.show_security_levels(result)
     

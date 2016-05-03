@@ -35,10 +35,10 @@ $wkspc/soot-infoflow/lib/slf4j-simple-1.7.5.jar
 $wkspc/soot-infoflow-android/lib/axml-1.0.jar" | tr "\n" ":")
 
 export flowdroid="java $jvm_flags -Dfile.encoding=UTF-8 -classpath $soot_classpath soot.jimple.infoflow.android.TestApps.Test"
-
 echo Running FlowDroid on $apk_file
 orig_wd=`pwd`
 cd $wkspc/soot-infoflow-android
+
 $flowdroid $apk_xform $sdk_platforms --nostatic --aplength 1 --aliasflowins --out $outdir/$apk_base.fd.xml &> $outdir/log/$apk_base.flowdroid.log
 err=$?; if [ $err -ne 0 ]; then echo "Failure!"; exit $err; fi
 cd $orig_wd

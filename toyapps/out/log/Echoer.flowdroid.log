@@ -1,11 +1,11 @@
 SLF4J: Class path contains multiple SLF4J bindings.
-SLF4J: Found binding in [jar:file:/home/diego/didfail/workspace/heros/slf4j-simple-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: Found binding in [jar:file:/home/diego/didfail/workspace/soot-infoflow/lib/slf4j-simple-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/diego/security_android/workspace/heros/slf4j-simple-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/diego/security_android/workspace/soot-infoflow/lib/slf4j-simple-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
 [main] INFO soot.jimple.infoflow.taintWrappers.EasyTaintWrapper - Loaded wrapper entries for 49 classes and 4 exclusions.
-[main] INFO soot.jimple.infoflow.android.SetupApplication - ARSC file parsing took 0.007082443 seconds
-Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
+[main] INFO soot.jimple.infoflow.android.SetupApplication - ARSC file parsing took 0.02501647 seconds
+Using '/home/diego/security_android/platforms/android-16/android.jar' as android.jar
 Warning: java.lang.ref.Finalizer is a phantom class!
 Warning: android.hardware.display.DisplayManager is a phantom class!
 Warning: android.media.RemoteControlClient$OnGetPlaybackPositionListener is a phantom class!
@@ -56,11 +56,11 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
     }
 
 [Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.8 seconds.
+[Spark] Pointer Assignment Graph in 0.5 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 1.3 seconds.
-[Spark] Solution found in 1.3 seconds.
+[Spark] Propagation in 0.9 seconds.
+[Spark] Solution found in 0.9 seconds.
 Callback analysis done.
 Warning: TextView is a phantom class!
 Warning: org.cert.echoer.TextView is a phantom class!
@@ -70,7 +70,7 @@ Warning: org.cert.echoer.Button is a phantom class!
 Warning: android.view.Button is a phantom class!
 Found 1 layout controls in file res/layout/activity_main.xml
 Found 1 layout controls
-Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
+Using '/home/diego/security_android/platforms/android-16/android.jar' as android.jar
 Warning: java.lang.ref.Finalizer is a phantom class!
 Warning: android.hardware.display.DisplayManager is a phantom class!
 Warning: android.media.RemoteControlClient$OnGetPlaybackPositionListener is a phantom class!
@@ -84,9 +84,9 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
         int $i0;
         org.cert.echoer.MainActivity $r0;
         android.os.Bundle $r1;
-        boolean $z0;
         org.cert.echoer.Button1Listener $r2;
         android.view.View $r3;
+        boolean $z0;
 
         $i0 = 0;
 
@@ -107,19 +107,19 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
         virtualinvoke $r0.<org.cert.echoer.MainActivity: void onResume()>();
 
      label3:
-        if $i0 == 2 goto label4;
-
-        $z0 = virtualinvoke $r0.<org.cert.echoer.MainActivity: boolean onCreateOptionsMenu(android.view.Menu)>(null);
-
-     label4:
         $r2 = new org.cert.echoer.Button1Listener;
         specialinvoke $r2.<org.cert.echoer.Button1Listener: void <init>(org.cert.echoer.MainActivity)>($r0);
-        if $i0 == 3 goto label5;
+        if $i0 == 2 goto label4;
 
         $r3 = new android.view.View;
         specialinvoke $r3.<android.view.View: void <init>(android.content.Context)>($r0);
         virtualinvoke $r2.<org.cert.echoer.Button1Listener: void onClick(android.view.View)>($r3);
         $r3 = null;
+
+     label4:
+        if $i0 == 3 goto label5;
+
+        $z0 = virtualinvoke $r0.<org.cert.echoer.MainActivity: boolean onCreateOptionsMenu(android.view.Menu)>(null);
 
      label5:
         if $i0 == 4 goto label3;
@@ -146,11 +146,11 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
     }
 
 [Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.1 seconds.
+[Spark] Pointer Assignment Graph in 0.0 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.9 seconds.
-[Spark] Solution found in 0.9 seconds.
+[Spark] Propagation in 0.6 seconds.
+[Spark] Solution found in 0.6 seconds.
 Running incremental callback analysis for 1 components...
 Incremental callback analysis done.
 Found 1 layout controls
@@ -161,7 +161,7 @@ Running data flow analysis...
 Running data flow analysis on /home/diego/security_android/toyapps/out/Echoer.apk with 129 sources and 64 sinks...
 Starting infoflow computation...
 [main] INFO soot.jimple.infoflow.Infoflow - Resetting Soot...
-Using '/home/diego/didfail/platforms/android-16/android.jar' as android.jar
+Using '/home/diego/security_android/platforms/android-16/android.jar' as android.jar
 Warning: java.lang.ref.Finalizer is a phantom class!
 [main] INFO soot.jimple.infoflow.Infoflow - Basic class loading done.
 [main] ERROR soot.jimple.infoflow.Infoflow - Only phantom classes loaded, skipping analysis...
@@ -242,8 +242,8 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [Spark] Pointer Assignment Graph in 0.0 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.9 seconds.
-[Spark] Solution found in 0.9 seconds.
+[Spark] Propagation in 0.5 seconds.
+[Spark] Solution found in 0.5 seconds.
 [main] INFO soot.jimple.infoflow.Infoflow - Callgraph has 102 edges
 [main] INFO soot.jimple.infoflow.Infoflow - Looking for sources and sinks...
 [main] INFO soot.jimple.infoflow.Infoflow - Source found: $r1 := @parameter0: android.view.View
@@ -270,38 +270,15 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 3
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 4
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 5
-[main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3) in method <org.cert.echoer.MainActivity: void getDataFromIntent()> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>() on line 0 in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r0.<org.cert.echoer.MainActivity: android.content.Intent i> = $r1
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = $r0.<org.cert.echoer.MainActivity: android.content.Intent i>
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret") in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - - $r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
-[main] INFO soot.jimple.infoflow.Infoflow - - $r5 = virtualinvoke $r1.<android.content.Intent: android.net.Uri getData()>() in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
-[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r1.<android.content.Intent: android.net.Uri getData()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r5.<android.net.Uri: java.lang.String toString()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
 [main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("URI recieved in Echoer: ", $r3) in method <org.cert.echoer.MainActivity: void getDataFromIntent()> was called with values from the following sources:
 [main] INFO soot.jimple.infoflow.Infoflow - - $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>() on line 0 in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>()
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r0.<org.cert.echoer.MainActivity: android.content.Intent i> = $r1
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> specialinvoke $r0.<org.cert.echoer.MainActivity: void getDataFromIntent()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r0.<org.cert.echoer.MainActivity: void onResume()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r0.<org.cert.echoer.MainActivity: void onCreate(android.os.Bundle)>($r1)
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> specialinvoke $r0.<org.cert.echoer.MainActivity: void getDataFromIntent()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r0.<org.cert.echoer.MainActivity: android.content.Intent i> = $r1
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = $r0.<org.cert.echoer.MainActivity: android.content.Intent i>
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r1.<android.content.Intent: android.net.Uri getData()>()
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r5.<android.net.Uri: java.lang.String toString()>()
@@ -324,6 +301,33 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<org.cert.echoer.Button1Listener: void onClick(android.view.View)>($r3)
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = $r0.<org.cert.echoer.Button1Listener: org.cert.echoer.MainActivity act>
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r4.<org.cert.echoer.MainActivity: void setResult(int,android.content.Intent)>(0, $r6)
+[main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3) in method <org.cert.echoer.MainActivity: void getDataFromIntent()> was called with values from the following sources:
+[main] INFO soot.jimple.infoflow.Infoflow - - $r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>() on line 0 in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r0.<org.cert.echoer.MainActivity: android.content.Intent i> = $r1
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> specialinvoke $r0.<org.cert.echoer.MainActivity: void getDataFromIntent()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> specialinvoke $r0.<org.cert.echoer.MainActivity: void getDataFromIntent()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = virtualinvoke $r0.<org.cert.echoer.MainActivity: android.content.Intent getIntent()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r0.<org.cert.echoer.MainActivity: android.content.Intent i> = $r1
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r1 = $r0.<org.cert.echoer.MainActivity: android.content.Intent i>
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r5 = virtualinvoke $r1.<android.content.Intent: android.net.Uri getData()>() in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r5 = virtualinvoke $r1.<android.content.Intent: android.net.Uri getData()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r5.<android.net.Uri: java.lang.String toString()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret") in method <org.cert.echoer.MainActivity: void getDataFromIntent()>
+[main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("Data recieved in Echoer: ", $r3)
 <?xml version="1.0" encoding="UTF-8"?>
 <results package="org.cert.echoer">
 <flow>
@@ -357,4 +361,4 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 </source>
 </flow>
 </results>
-Analysis has run for 30.871587201 seconds
+Analysis has run for 18.676571802 seconds

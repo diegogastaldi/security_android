@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e  # abort on error
 
-export didfail=~/didfail
-if [ ! -d $didfail ]; then mkdir $didfail; fi
-if [ ! -d $didfail/epicc ]; then mkdir $didfail/epicc; fi
-if [ ! -d $didfail/workspace ]; then mkdir $didfail/workspace; fi
-cd $didfail
+export security_android=~/security_android
+if [ ! -d $security_android ]; then mkdir $security_android; fi
+if [ ! -d $security_android/epicc ]; then mkdir $security_android/epicc; fi
+if [ ! -d $security_android/workspace ]; then mkdir $security_android/workspace; fi
+cd $security_android
 
 #sudo apt-get update
 sudo apt-get install openjdk-7-jdk openjdk-7-jre-headless
@@ -13,10 +13,10 @@ sudo apt-get install gcc-4.6-multilib lib32stdc++6 zlib1g-dev:i386
 
 wget -nc http://siis.cse.psu.edu/epicc/downloads/epicc-0.1.tgz
 wget -nc https://github.com/dare-android/platform_dalvik/releases/download/dare-1.1.0/dare-1.1.0-linux.tgz
-wget -nc http://www.cs.cmu.edu/~wklieber/didfail/didfail.zip
-wget -nc http://www.cs.cmu.edu/~wklieber/didfail/workspace.tar.bz2
-wget -nc http://www.cs.cmu.edu/~wklieber/didfail/platform-16.zip
-wget -nc http://www.cs.cmu.edu/~wklieber/didfail/toyapps-2014-04-28.zip
+wget -nc http://www.cs.cmu.edu/~wklieber/security_android/didfail.zip
+wget -nc http://www.cs.cmu.edu/~wklieber/security_android/workspace.tar.bz2
+wget -nc http://www.cs.cmu.edu/~wklieber/security_android/platform-16.zip
+wget -nc http://www.cs.cmu.edu/~wklieber/security_android/toyapps-2014-04-28.zip
 
 tar xzf epicc-0.1.tgz -C epicc
 tar xzf dare-1.1.0-linux.tgz
@@ -28,5 +28,5 @@ unzip -q toyapps-2014-04-28.zip
 tar xjf workspace.tar.bz2 -C workspace
 
 echo "To run analysis on provided toy apps:"
-echo "    $didfail/cert/run-didfail.sh $didfail/toyapps/out/ $didfail/toyapps/*.apk"
+echo "    $security_android/cert/run-didfail.sh $security_android/toyapps/out/ $security_android/toyapps/*.apk"
 

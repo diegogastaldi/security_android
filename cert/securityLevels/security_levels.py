@@ -59,7 +59,7 @@ class Check_levels(object):
 
     def check_levels(self, flows):
         inequalities = list()
-        bundle_level = str()
+        bundle_level = None
         bundle_str = "<android.os.Bundle: java.lang.String getString(java.lang.String)>"
         bundle_srcs = set()
 
@@ -87,15 +87,12 @@ class Check_levels(object):
                     tupl = (current_src, current_sink)
                     inequalities.append(tupl)                    
                 else:
-                    die("Unknown Type of Src: " + src)      
-        bundle_sink = (bundle_str, bundle_level)
-        for src in bundle_srcs:
-            tupl = (src, bundle_sink)
-            pprint("---------1------------------------------")
-            pprint(tupl)
-            inequalities.append(tupl)
-            pprint("----------2-----------------------------")
-            pprint(inequalities)
+                    die("Unknown Type of Src: " + src)   
+        if (bundle_level != None):
+            bundle_sink = (bundle_str, bundle_level)
+            for src in bundle_srcs:
+                tupl = (src, bundle_sink)
+                inequalities.append(tupl)
         result = tract_const_finite_semilattice(inequalities, self._order, self._exceptions)
         return self.show_security_levels(result)
     

@@ -72,13 +72,9 @@ def drop(i):
         ns.remove(i)
 
 def tract_const_finite_semilattice(inequalities, order, exceptions):
-    import sys
-    sys.stderr.write(str(order.get_vars()))
     initialize(inequalities, order, exceptions)
     while len(ns):
         (t, b) = pop()
-        import sys
-        sys.stderr.write(str(set([t[1], p[b[1]]])))
         if (t[1] in order.get_vars()):
             p[b[1]] = order.supremum(set([p[t[1]], p[b[1]]]))
         else:

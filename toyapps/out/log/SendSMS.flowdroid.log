@@ -4,7 +4,7 @@ SLF4J: Found binding in [jar:file:/home/diego/security_android/workspace/soot-in
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
 [main] INFO soot.jimple.infoflow.taintWrappers.EasyTaintWrapper - Loaded wrapper entries for 49 classes and 4 exclusions.
-[main] INFO soot.jimple.infoflow.android.SetupApplication - ARSC file parsing took 0.008332683 seconds
+[main] INFO soot.jimple.infoflow.android.SetupApplication - ARSC file parsing took 0.011830272 seconds
 Using '/home/diego/security_android/platforms/android-16/android.jar' as android.jar
 Warning: java.lang.ref.Finalizer is a phantom class!
 Warning: android.hardware.display.DisplayManager is a phantom class!
@@ -53,7 +53,7 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
     }
 
 [Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.3 seconds.
+[Spark] Pointer Assignment Graph in 0.4 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
 [Spark] Propagation in 0.3 seconds.
@@ -149,11 +149,11 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
     }
 
 [Call Graph] For information on where the call graph may be incomplete, use the verbose option to the cg phase.
-[Spark] Pointer Assignment Graph in 0.0 seconds.
+[Spark] Pointer Assignment Graph in 0.1 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.8 seconds.
-[Spark] Solution found in 0.8 seconds.
+[Spark] Propagation in 0.9 seconds.
+[Spark] Solution found in 0.9 seconds.
 Running incremental callback analysis for 1 components...
 Incremental callback analysis done.
 Found 1 layout controls
@@ -251,8 +251,8 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [Spark] Pointer Assignment Graph in 0.0 seconds.
 [Spark] Type masks in 0.0 seconds.
 [Spark] Pointer Graph simplified in 0.0 seconds.
-[Spark] Propagation in 0.8 seconds.
-[Spark] Solution found in 0.8 seconds.
+[Spark] Propagation in 0.9 seconds.
+[Spark] Solution found in 0.9 seconds.
 [main] INFO soot.jimple.infoflow.Infoflow - Callgraph has 126 edges
 [main] INFO soot.jimple.infoflow.Infoflow - Looking for sources and sinks...
 [main] INFO soot.jimple.infoflow.Infoflow - Source found: $r1 := @parameter0: android.view.View
@@ -286,13 +286,14 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 1
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 2
 [main] INFO soot.jimple.infoflow.Infoflow - Building path 3
-[main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>("1234567890", null, $r1, null, null) in method <org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() in method <org.cert.sendsms.MainActivity: void onActivityResult(int,int,android.content.Intent)>
+[main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("SendSMS: ", $r3) in method <org.cert.sendsms.Button1Listener: void onClick(android.view.View)> was called with values from the following sources:
+[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>() on line 23 in method <org.cert.sendsms.Button1Listener: void onClick(android.view.View)>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r0.<org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)>($r2)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>("1234567890", null, $r1, null, null)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("SendSMS: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>("1234567890", null, $r1, null, null) in method <org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)> was called with values from the following sources:
 [main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() on line 0 in method <org.cert.sendsms.MainActivity: void onActivityResult(int,int,android.content.Intent)>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
@@ -311,13 +312,12 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r0.<org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)>($r2)
 [main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>("1234567890", null, $r1, null, null)
-[main] INFO soot.jimple.infoflow.Infoflow - The sink staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("SendSMS: ", $r3) in method <org.cert.sendsms.Button1Listener: void onClick(android.view.View)> was called with values from the following sources:
-[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>() on line 23 in method <org.cert.sendsms.Button1Listener: void onClick(android.view.View)>
+[main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>() in method <org.cert.sendsms.MainActivity: void onActivityResult(int,int,android.content.Intent)>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()
-[main] INFO soot.jimple.infoflow.Infoflow - 		 -> staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("SendSMS: ", $r3)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r3 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> $r2 = virtualinvoke $r3.<android.os.Bundle: java.lang.String getString(java.lang.String)>("secret")
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r0.<org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)>($r2)
+[main] INFO soot.jimple.infoflow.Infoflow - 		 -> virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>("1234567890", null, $r1, null, null)
 [main] INFO soot.jimple.infoflow.Infoflow - The sink virtualinvoke $r4.<org.cert.sendsms.MainActivity: void startActivityForResult(android.content.Intent,int)>($r2, 0) in method <org.cert.sendsms.Button1Listener: void onClick(android.view.View)> was called with values from the following sources:
 [main] INFO soot.jimple.infoflow.Infoflow - - $r3 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>() on line 23 in method <org.cert.sendsms.Button1Listener: void onClick(android.view.View)>
 [main] INFO soot.jimple.infoflow.Infoflow - 	on Path: 
@@ -354,4 +354,4 @@ Warning: android.view.ViewTreeObserver$OnWindowFocusChangeListener is a phantom 
 </source>
 </flow>
 </results>
-Analysis has run for 14.581681931 seconds
+Analysis has run for 15.898294156 seconds

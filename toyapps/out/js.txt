@@ -1,8 +1,8 @@
 Applications don't have security problems. 
  Assigned security levels are: 
   {'newField_6': 'Semi-private1'
-  'WRITE_EXTERNAL_STORAGE': 'Semi-private1'
+  'WRITE_EXTERNAL_STORAGE': 'Semi-public1'
   'SEND_SMS': 'Semi-private1'
   'newField_8': 'Semi-public1'
-  'BUNDLE': 'Semi-private1'
+  'BUNDLE': 'Public'
   'LOG': 'Semi-private1'}

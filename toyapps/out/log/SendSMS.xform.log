@@ -1,4 +1,4 @@
-Soot started on Mon May 02 20:00:16 ART 2016
+Soot started on Thu Jun 09 17:54:23 ART 2016
 Using '/home/diego/security_android/platforms/android-16/android.jar' as android.jar
 Warning: android.hardware.display.DisplayManager is a phantom class!
 Warning: android.media.RemoteControlClient$OnGetPlaybackPositionListener is a phantom class!
@@ -472,5 +472,5 @@ Transforming android.support.v4.util.LongSparseArray...
 Transforming android.support.v4.view.ViewConfigurationCompat$FroyoViewConfigurationVersionImpl... 
 Writing APK to: sootOutput/SendSMS.apk
 do not forget to sign the .apk file with jarsigner and to align it with zipalign
-Soot finished on Mon May 02 20:01:11 ART 2016
-Soot has run for 0 min. 54 sec.
+Soot finished on Thu Jun 09 17:55:06 ART 2016
+Soot has run for 0 min. 42 sec.

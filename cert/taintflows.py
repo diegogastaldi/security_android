@@ -57,22 +57,17 @@ def uniq_by_str(l):
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
-# Apps' descriptor
-class Glo(object): 
+class Glo(object):
     def __init__(self):
-        self.manifest = {}
+        self.mainfest = {}
         self.filter = {}
-        self.flows = {} # Flows found by FlowDroid
+        self.flows = {}
         self.epicc = {}
-        self.rx_type_of = {} # Maps (pkg, id) pair to type of receiving component
-        self.comp_type_of = {} # Maps component name to its type
         self.match_by_tx = {}
         self.match_by_rx = {}
         self.match_by_tx_id = {}
         self.unsound = False
         self.act_alias_to_targ = {}
-        self.discard_tx_comp_name = True # FIXME: Should be False, but this is currently broken.
-        self.strip_rx_comp_name = True   # FIXME: Should be False, but this is currently broken.
 glo = Glo()
 
 class IntentFilter(object): 
@@ -86,81 +81,73 @@ class IntentFilter(object):
 
 # Modified: When intents, sinks and source are created, we add a level field from input gui or input file.
 def find_flows(root, check_levels):
-    assert(type(root) == ET.Element)
     pkg_name = root.attrib['package']
     ret = []
 
-    for flow in root.findall("flow"):  # each flow has a sink and a source.
+    for flow in root.findall("flow"):
         sink = flow.find("sink").attrib['method']
         if flow.find("sink").attrib.get('is-intent') == "1":
             intent_id = flow.find("sink").attrib.get('intent-id')
             if (intent_id is None):
                 sys.stderr.write("Error: Intent in %s is missing intent-id!\n" % pkg_name)
-            sink_component = flow.find("sink").get('component') 
-
+            sink_component = flow.find("sink").get('component')
+            sink_component = None # FIXME: for debugging!
             sink = Intent(tx=(pkg_name, sink_component), rx=None, intent_id=intent_id)
-            rx_type = ComponentType.Activity
-            glo.rx_type_of[(pkg_name, intent_id)] = rx_type
         elif flow.find("sink").attrib.get('is-intent-result') == "1":
             sink_component = flow.find("sink").get('component')
+            sink_component = None # FIXME: for debugging!
             sink = IntentResult(Intent(tx=None, rx=(pkg_name, sink_component), intent_id=None))
         else:
-        	# Obtains the level and assigns this to sink 
-            sink = Sink("Sink: " + str(sink), check_levels.assign_level(sink))
+            sink = Sink("Sink: " + str(sink), check_levels.assign_level(str(sink)))
         for src_node in flow.findall("source"):
-            src = src_node.attrib['method']  
+            src = src_node.attrib['method']
             component = None
             if src.startswith("<android.content.Intent:") or ("getIntent" in src):
                 component = src_node.attrib['component']
+                component = None # FIXME: for debugging!
                 src = Intent(tx=None, rx=(pkg_name, component), intent_id=None)
-            elif ("@parameter2: android.content.Intent" in src):  # FIXME: only for "android.app.Activity: void onActivityResult"
+            elif ("@parameter2: android.content.Intent" in src):  # FIXME: only for "android.app.Activity: void onActivityResult" 
                 component = src_node.attrib['component']
+                component = None # FIXME: for debugging!
                 src = IntentResult(Intent(tx=(pkg_name, component), rx=None, intent_id=None))
             else:
-            	# Obtains the level and assigns this to source
                 src = Src("Src: " + str(src), check_levels.assign_level(str(src)))
-            ret.append(Flow(src=src, app=pkg_name, sink=sink)) 
+            #FIXME: What if the the source and sinks are in different components?
+            ret.append(Flow(src=src, app=pkg_name, sink=sink))
     return ret
 
-
-def get_epicc(tx):
-    # Looks up information for tx in glo.epicc
+def get_epicc_and_filters(tx, rx):
     assert(isinstance(tx, Intent))
+    assert(isinstance(rx, Intent))
     ((tx_pkg, tx_comp), tx_id) = (tx.tx, tx.intent_id)
+    (rx_pkg, rx_comp) = rx.rx
     try:
         epicc = glo.epicc[tx_pkg][tx_id]
     except KeyError as e:
-        if id(tx) not in get_epicc.missed:
+        if id(tx) not in get_epicc_and_filters.missed:
             get_epicc_and_filters.missed.add(id(tx))
             sys.stderr.write("Missing epicc info for %s, intent_id='%s'\n" % (tx_pkg, tx_id))
         epicc = [{}]
-    return epicc
-get_epicc.missed = set()
-
-def get_filters(rx):
-    # Looks up information for rx in glo.filters
-    assert(isinstance(rx, Intent))
-    (rx_pkg, rx_comp) = rx.rx
     try:
         filters_by_comp = glo.filter[rx_pkg]
-        filters = filters_by_comp.get(rx_comp, None)
-        if (filters is None):
+        try:
+            filters = filters_by_comp[rx_comp]
+        except KeyError as e:
             filters = flatten(filters_by_comp.values())
     except KeyError as e:
-        die("Missing manifest for " + rx_pkg)
-    return filters
+        die("Missing manifest (apk) for " + tx_pkg)
+    return (epicc, filters)
+get_epicc_and_filters.missed = set()
 
-        
 def match_intent_attr(tx, rx):
     assert(isinstance(tx, Intent))
     assert(isinstance(rx, Intent))
-    (tx_epicc, filters) = [get_epicc(tx), get_filters(rx)]
+    (tx_epicc, filters) = get_epicc_and_filters(tx, rx)
     (rx_pkg, rx_comp) = rx.rx
     ret = []
 
     def match_intent_subcase(epicc, filt):
         # This method implements the action, category, and data tests described in
-        # donde la clave de busqueda es el name
         # http://developer.android.com/guide/components/intents-filters.html#Resolution
         # Epicc does not produce URI information, so we ignore the URI tests.
         assert(isinstance(filt, IntentFilter))
@@ -174,10 +161,10 @@ def match_intent_attr(tx, rx):
             # Lots of false positives here for <any_string>.
             # TODO: Can explicit intents be explicitly designated using an
             # activity alias?  If so, we need to the use information in
-            # glo.act_alias_to_targ. # campo asignado pero nunca usado
+            # glo.act_alias_to_targ.
             return ((epicc_class == rx_comp) or match_any_string(epicc_class))
         # Action test
-        act = epicc.get('Action', None) or epicc.get('Ac tions', Noe)
+        act = epicc.get('Action', None) or epicc.get('Actions', None)
         if type(act) == str:
             act_set = set([act])
         elif (act is None):
@@ -243,20 +230,17 @@ def match_intent_attr(tx, rx):
 def generate_all_matches():
     for (tx_pkg, intent_list) in glo.epicc.iteritems():
         for (intent_id, epicc) in intent_list.iteritems():
-            if intent_id in ['*', BCAST_ID]:
+            if intent_id == '*':
                 continue
-            tx_component = None # Sending component name is irrelevant (?)
-            tx = Intent(tx=(tx_pkg,tx_component), rx=None, intent_id=intent_id)
+            tx = Intent(tx=(tx_pkg,None), rx=None, intent_id=intent_id)
             for (rx_pkg, filters_by_comp) in glo.filter.iteritems():
                 for (comp, filters) in filters_by_comp.iteritems():
+                    comp = None # FIXME: for debugging!
                     rx = Intent(tx=None, rx=(rx_pkg,comp), intent_id=None)
                     if match_intent_attr(tx, rx):
-                        if glo.strip_rx_comp_name:
-                            comp = None
-                            rx = Intent(tx=None, rx=(rx_pkg,comp), intent_id=None)
                         yield Intent(tx=tx.tx, rx=rx.rx, intent_id=intent_id)
 
-def mitigate_missing_epicc_entries():
+def populate_matches():
     for (pkg, flows) in glo.flows.iteritems():
         pkg_epicc = glo.epicc[pkg]
         for flow in flows:
@@ -264,9 +248,6 @@ def mitigate_missing_epicc_entries():
                 intent_id = flow.sink.intent_id
                 if (intent_id not in pkg_epicc) and ('*' in pkg_epicc):
                     pkg_epicc[intent_id] = pkg_epicc['*']
-
-def populate_matches():
-    mitigate_missing_epicc_entries()
     glo.match_by_tx = {}
     glo.match_by_tx_id = {}
     glo.match_by_rx = {}
@@ -295,7 +276,7 @@ def match_flows(half_flows):
         # For a flow of the form Flow(src, app, sink):
         #   If src is a non-intent source, yield the original flow unchanged.
         #   If src has the form Intent(tx=None,rx,intent_id), find all possible
-        #   values for tx, and yield the corresponding Flows.
+        #   values for tx, and yield the corresponding flows.
         for flow1 in half_flows:
             if isinstance(flow1.src, Intent): # getIntent
                 half_intent = flow1.src
@@ -320,7 +301,7 @@ def match_flows(half_flows):
         # For a flow of the form Flow(src, comp, sink):
         #   If sink is a non-intent source, yield the original flow unchanged.
         #   If sink has the form Intent(tx,rx=None,intent_id), find all possible
-        #   values for rx, and yield the corresponding Flows.
+        #   values for rx, and yield the corresponding flows.
         for flow1 in half_flows:
             if isinstance(flow1.sink, Intent): # startActivity
                 half_intent = flow1.sink
@@ -346,19 +327,19 @@ def match_flows(half_flows):
                 return False
         return True
     ret = half_flows
-    ret = complete_src_intents(ret) # takes the sources and flows it generates all possible sinks
-    ret = complete_sink_intents(ret) # takes the sinks and flows it generates all possible sources
-    ret = filter(is_possible_flow, ret) # Construct a list from those elements of iterable for which function returns true.
+    ret = complete_src_intents(ret)
+    ret = complete_sink_intents(ret)
+    ret = filter(is_possible_flow, ret)
     return list(OrderedSet(ret))
 
-def solve_flows(Flows):
+def solve_flows(flows):
     intents = OrderedSet()
     intent_results = OrderedSet()
     sources = OrderedSet()
     feedout = {}
     taint = {}
     MySet = OrderedSet
-    for flow in Flows:
+    for flow in flows:
         if isinstance(flow.src, Intent):
             intents.add(flow.src)
         elif isinstance(flow.src, IntentResult):
@@ -380,7 +361,7 @@ def solve_flows(Flows):
         taint[intent] = MySet()
     changed = OrderedSet(sources)
     while len(changed) > 0:
-        worklist = Flows  # TODO: Base worklist off of the changed elements.
+        worklist = flows  # TODO: Base worklist off of the changed elements.
         changed = OrderedSet()
         for flow in worklist:
             for t in taint[flow.src] | OrderedSet([flow.src]):
@@ -394,9 +375,9 @@ def solve_flows(Flows):
     return taint
 
 def read_intent_filter(intent_node):
-    assert(isinstance(intent_node, ET.Element)) 
-    assert(intent_node.tag == 'intent-filter') 
-    intent_filter = IntentFilter() 
+    assert(isinstance(intent_node, ET.Element))
+    assert(intent_node.tag == 'intent-filter')
+    intent_filter = IntentFilter()
     for sub in intent_node.findall("*"):
         filter_attr = OrderedDict()
         for (key, val) in sub.attrib.iteritems():
@@ -417,48 +398,23 @@ def read_intent_filters_from_manifest(root):
     ret = OrderedDict()
     # Intent filters can be used with Activities as well as Activity-aliases
     # Alias is used to have a different label for the same activity
-    all_components = (
-        root.findall(".//activity") +
-        root.findall(".//activity-alias") +
-        #root.findall(".//service") +
-        #root.findall(".//provider") +
-        #root.findall(".//receiver") +
-        [])
+    all_components = root.findall(".//activity")+root.findall(".//activity-alias")
     for component in all_components:
         filter_list = []
-        comp_name = None
-        comp_type = None
-        def read_component_name(xml_attrib):
-            ret = component.attrib[android_pfx + xml_attrib]
-            if ret.startswith("."):
-                ret = root.find('.').attrib['package'] + ret
-            return ret
         # Component name for an Activity is stored as the "name" attribute
         if component.tag == "activity":
-            comp_name = read_component_name("name")
-            comp_type = ComponentType.Activity
+            comp_name = component.attrib[android_pfx + "name"]
         # Component name for an Activity-alias is stored as the "targetActivity" attribute
         elif component.tag == "activity-alias":
-            comp_name = read_component_name("targetActivity")
+            comp_name = component.attrib[android_pfx + "targetActivity"]
             glo.act_alias_to_targ[component.attrib[android_pfx + "name"]] = comp_name
-        elif component.tag == "service":
-            comp_name = read_component_name("name")
-            comp_type = ComponentType.Service
-        elif component.tag == "provider":
-            comp_name = read_component_name("name")
-            comp_type = ComponentType.ContentProvider
-        elif component.tag == "receiver":
-            comp_name = read_component_name("name")
-            comp_type = ComponentType.BroadcastReceiver
-        else:
-            die("Unexpected component tag: " + component.tag)
+        if comp_name.startswith("."):
+            comp_name = root.find('.').attrib['package'] + comp_name
         for intent_node in component.findall(".//intent-filter"):
             filter_list.append(read_intent_filter(intent_node))
         ret.setdefault(comp_name, []);
         ret[comp_name] += filter_list
-        glo.comp_type_of[comp_name] = comp_type
     return ret
-
 
 def try_read_manifest_file(filename):
     root = None
@@ -466,7 +422,7 @@ def try_read_manifest_file(filename):
         if filename.endswith(".apk"):
             manifest_text = subprocess.check_output(
                 ["cd " + script_path + "; ./extract-manifest.sh " + os.path.realpath(filename)], shell=True)
-            root = ET.fromstring(manifest_text) # creates tree
+            root = ET.fromstring(manifest_text)
         elif filename.endswith("AndroidManifest.xml") or filename.endswith(".manifest.xml"):
             root = ET.parse(filename)
     except ET.ParseError:

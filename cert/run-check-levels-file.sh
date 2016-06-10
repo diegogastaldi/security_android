@@ -18,13 +18,14 @@ if [ $# -lt 2 ]; then
     echo "No spaces are allowed in outdir or apk filenames."
     exit
 fi
-export outdir=$1 
+export outdir="toyapps/out/"
 shift 
 export outdir=`readlink -m "$outdir"` 
 
 ulimit -v $max_mem # modified
 
 orig_wd=`pwd`
+
 cd $outdir
-$python -t -t $script_path/taintflows.py --check_levels_file "js.txt" $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out
+$python -t -t $script_path/taintflows.py --check_levels_file "~/security_android/out.txt" $($script_path/find-processed-apps.sh $outdir) > $outdir/flows.out
 cd $orig_wd

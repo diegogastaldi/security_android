@@ -65,19 +65,18 @@ class Check_levels(object):
             if (flow.startswith("Sink") or flow.startswith("Intent") or flow.startswith("Src")):
                 current_sink_level = self._get_level(flow)
                 current_sink_method = flow
-            else:
-                die("Unknown Type of Sink: " + flow)
-            for src in flows["Taints"][flow]: 
-                if (src.startswith("Src")): 
-                    current_src = (src.split("Src: ")[1].split("',")[0], self._get_level(src, False))
-                    if (current_sink_method.startswith("Intent")):
+                if (current_sink_method.startswith("Intent")):
                         current_sink = (current_sink_method, current_sink_level)
                     else:
                         if (current_sink_method.startswith("Sink")):    
                             current_sink = (current_sink_method.split("Sink: ")[1].split("',")[0], current_sink_level)
                         else:
-                            current_sink = (current_sink_method.split("Src: ")[1].split("',")[0], current_sink_level)                    
-                    
+                            current_sink = (current_sink_method.split("Src: ")[1].split("',")[0], current_sink_level)
+            else:
+                die("Unknown Type of Sink: " + flow)
+            for src in flows["Taints"][flow]: 
+                if (src.startswith("Src")): 
+                    current_src = (src.split("Src: ")[1].split("',")[0], self._get_level(src, False))
                     tupl = (current_src, current_sink)
                     inequalities.append(tupl)                    
                 else:

@@ -67,11 +67,11 @@ class Check_levels(object):
                 current_sink_method = flow
                 if (current_sink_method.startswith("Intent")):
                         current_sink = (current_sink_method, current_sink_level)
+                else:
+                    if (current_sink_method.startswith("Sink")):    
+                        current_sink = (current_sink_method.split("Sink: ")[1].split("',")[0], current_sink_level)
                     else:
-                        if (current_sink_method.startswith("Sink")):    
-                            current_sink = (current_sink_method.split("Sink: ")[1].split("',")[0], current_sink_level)
-                        else:
-                            current_sink = (current_sink_method.split("Src: ")[1].split("',")[0], current_sink_level)
+                        current_sink = (current_sink_method.split("Src: ")[1].split("',")[0], current_sink_level)
             else:
                 die("Unknown Type of Sink: " + flow)
             for src in flows["Taints"][flow]: 

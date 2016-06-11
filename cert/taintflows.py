@@ -616,6 +616,7 @@ def main():
         app = wx.PySimpleApp(0)
         wx.InitAllImageHandlers()
         frame_1 = MyFrame(None, wx.ID_ANY, "")
+        entities.remove('BUNDLE')
         frame_1.create(levels, entities, analize_leves, add_exception)
         app.SetTopWindow(frame_1)
         frame_1.Show()

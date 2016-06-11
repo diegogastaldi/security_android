@@ -18,7 +18,7 @@ if [ $# -lt 2 ]; then
     echo "No spaces are allowed in outdir or apk filenames."
     exit
 fi
-export outdir=$1 
+export outdir="toyapps/out/" 
 shift 
 export outdir=`readlink -m "$outdir"` 
 

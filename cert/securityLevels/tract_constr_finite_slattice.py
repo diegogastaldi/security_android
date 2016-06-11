@@ -91,5 +91,6 @@ def tract_const_finite_semilattice(inequalities, order, exceptions):
             out ["p"] = inequality
             return out
     out ["correct"] = True
+    del p["BUNDLE"]
     out ["p"] = p
     return out

@@ -1,7 +1,4 @@
-/ant.settings
-/lib
-/classes
-/.classpath
+
 /sootOutput
 # IntelliJ IDEA project dir
 .idea
